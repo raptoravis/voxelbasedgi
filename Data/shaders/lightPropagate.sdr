@@ -1,0 +1,10 @@
+Defines
+{
+  USE_OCCLUSION
+}
+ComputeShader
+{
+  lightPropagate.csh
+}
+
+

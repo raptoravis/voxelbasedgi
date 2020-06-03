@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug DX11|Win32">
+      <Configuration>Debug DX11</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release DX11|Win32">
+      <Configuration>Release DX11</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1841F2F8-D3DA-4727-9331-A4FCF04B2650}</ProjectGuid>
+    <RootNamespace>GlobalIllumination</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release DX11|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug DX11|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release DX11|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug DX11|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug DX11|Win32'">..\bin100dx11x86d\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug DX11|Win32'">output\100dx11x86d\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug DX11|Win32'" />
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release DX11|Win32'">..\bin100dx11x86\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release DX11|Win32'">output\100dx11x86\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release DX11|Win32'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug DX11|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.\includes;..\External\DirectX11\includes;..\External\AntTweakBar\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <StringPooling>false</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ErrorReporting>None</ErrorReporting>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>winmm.lib;d3d11.lib;d3dcompiler.lib;d3dx11d.lib;dxerr.lib;dxguid.lib;DXGI.lib;AntTweakBar.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\External\DirectX11\lib\x86;..\External\AntTweakBar\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>output\100dx11x86d\$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <LinkErrorReporting>NoErrorReport</LinkErrorReporting>
+    </Link>
+    <Manifest>
+      <VerboseOutput>false</VerboseOutput>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>xcopy /Y /D /C "$(SolutionDir)..\External\AntTweakBar\bin\AntTweakBar.dll" "$(TargetDir)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release DX11|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>.\includes;..\External\DirectX11\includes;..\External\AntTweakBar\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <StringPooling>false</StringPooling>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ErrorReporting>None</ErrorReporting>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>.\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>winmm.lib;d3d11.lib;d3dcompiler.lib;d3dx11.lib;dxerr.lib;dxguid.lib;DXGI.lib;AntTweakBar.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\External\DirectX11\lib\x86;..\External\AntTweakBar\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>output\100dx11x86\$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <LinkErrorReporting>NoErrorReport</LinkErrorReporting>
+    </Link>
+    <Manifest>
+      <VerboseOutput>false</VerboseOutput>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>xcopy /Y /D /C "$(SolutionDir)..\External\AntTweakBar\bin\AntTweakBar.dll" "$(TargetDir)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\Color.h" />
+    <ClInclude Include="includes\DX11_VertexLayout.h" />
+    <ClInclude Include="includes\maths.h" />
+    <ClInclude Include="includes\Matrix4.h" />
+    <ClInclude Include="includes\Vector2.h" />
+    <ClInclude Include="includes\Vector3.h" />
+    <ClInclude Include="includes\Vector4.h" />
+    <ClInclude Include="includes\Camera.h" />
+    <ClInclude Include="includes\DirectionalLight.h" />
+    <ClInclude Include="includes\ILight.h" />
+    <ClInclude Include="includes\Mesh.h" />
+    <ClInclude Include="includes\PointLight.h" />
+    <ClInclude Include="includes\render_states.h" />
+    <ClInclude Include="includes\DX11_RenderTargetConfig.h" />
+    <ClInclude Include="includes\GpuCmd.h" />
+    <ClInclude Include="includes\vertex_types.h" />
+    <ClInclude Include="includes\DX11_BlendState.h" />
+    <ClInclude Include="includes\DX11_DepthStencilState.h" />
+    <ClInclude Include="includes\DX11_IndexBuffer.h" />
+    <ClInclude Include="includes\DX11_RasterizerState.h" />
+    <ClInclude Include="includes\DX11_RenderTarget.h" />
+    <ClInclude Include="includes\DX11_Renderer.h" />
+    <ClInclude Include="includes\DX11_Sampler.h" />
+    <ClInclude Include="includes\DX11_StructuredBuffer.h" />
+    <ClInclude Include="includes\DX11_UniformBuffer.h" />
+    <ClInclude Include="includes\DX11_VertexBuffer.h" />
+    <ClInclude Include="includes\DeferredLighting.h" />
+    <ClInclude Include="includes\FinalProcessor.h" />
+    <ClInclude Include="includes\GlobalIllum.h" />
+    <ClInclude Include="includes\IPostProcessor.h" />
+    <ClInclude Include="includes\Sky.h" />
+    <ClInclude Include="includes\Application.h" />
+    <ClInclude Include="includes\PathPointLight.h" />
+    <ClInclude Include="includes\stdafx.h" />
+    <ClInclude Include="includes\DemoMesh.h" />
+    <ClInclude Include="includes\Font.h" />
+    <ClInclude Include="includes\Material.h" />
+    <ClInclude Include="includes\ResourceManager.h" />
+    <ClInclude Include="includes\DX11_Shader.h" />
+    <ClInclude Include="includes\DX11_Texture.h" />
+    <ClInclude Include="includes\Demo.h" />
+    <ClInclude Include="includes\FileManager.h" />
+    <ClInclude Include="includes\InputManager.h" />
+    <ClInclude Include="includes\List.h" />
+    <ClInclude Include="includes\TimeManager.h" />
+    <ClInclude Include="includes\Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\DirectionalLight.cpp" />
+    <ClCompile Include="src\DX11_VertexLayout.cpp" />
+    <ClCompile Include="src\Mesh.cpp" />
+    <ClCompile Include="src\PointLight.cpp" />
+    <ClCompile Include="src\DX11_BlendState.cpp" />
+    <ClCompile Include="src\DX11_DepthStencilState.cpp" />
+    <ClCompile Include="src\DX11_IndexBuffer.cpp" />
+    <ClCompile Include="src\DX11_RasterizerState.cpp" />
+    <ClCompile Include="src\DX11_RenderTarget.cpp" />
+    <ClCompile Include="src\DX11_Renderer.cpp" />
+    <ClCompile Include="src\DX11_Sampler.cpp" />
+    <ClCompile Include="src\DX11_StructuredBuffer.cpp" />
+    <ClCompile Include="src\DX11_UniformBuffer.cpp" />
+    <ClCompile Include="src\DX11_VertexBuffer.cpp" />
+    <ClCompile Include="src\DeferredLighting.cpp" />
+    <ClCompile Include="src\FinalProcessor.cpp" />
+    <ClCompile Include="src\GlobalIllum.cpp" />
+    <ClCompile Include="src\Sky.cpp" />
+    <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\PathPointLight.cpp" />
+    <ClCompile Include="src\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug DX11|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release DX11|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\DemoMesh.cpp" />
+    <ClCompile Include="src\Font.cpp" />
+    <ClCompile Include="src\Material.cpp" />
+    <ClCompile Include="src\ResourceManager.cpp" />
+    <ClCompile Include="src\DX11_Shader.cpp" />
+    <ClCompile Include="src\DX11_Texture.cpp" />
+    <ClCompile Include="src\Demo.cpp" />
+    <ClCompile Include="src\FileManager.cpp" />
+    <ClCompile Include="src\InputManager.cpp" />
+    <ClCompile Include="src\TimeManager.cpp" />
+    <ClCompile Include="src\Window.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

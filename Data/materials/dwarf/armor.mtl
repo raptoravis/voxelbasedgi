@@ -1,0 +1,14 @@
+Textures
+{
+  ColorTexture          textures/dwarf/armor.dds
+  NormalTexture         textures/dwarf/armor_ddn.dds
+  SpecularTexture       textures/dwarf/armor_spec.dds
+}
+RenderStates
+{
+  cull                  BACK_CULL     
+}
+Shader
+{
+  file                  shaders/base.sdr
+}

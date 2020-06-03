@@ -1,0 +1,12 @@
+Defines
+{
+  TEXTURE
+}
+VertexShader
+{
+  postQuadTC.vsh
+}
+FragmentShader
+{ 
+  globalIllum.fsh
+}

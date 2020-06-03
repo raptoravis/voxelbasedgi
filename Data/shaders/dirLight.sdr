@@ -1,0 +1,9 @@
+VertexShader
+{
+  postQuadTC.vsh
+}
+FragmentShader
+{ 
+  dirLight.fsh
+}
+

@@ -32,7 +32,7 @@ public:
 
 private:
 	List<char[DEMO_MAX_STRING]> directories;
-	
+
 };
 
 #endif

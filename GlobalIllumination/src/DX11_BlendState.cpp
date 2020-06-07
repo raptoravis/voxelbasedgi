@@ -23,10 +23,10 @@ bool DX11_BlendState::Create(const BlendDesc &desc)
 	blendStateDesc.RenderTarget[0].BlendOpAlpha = (D3D11_BLEND_OP)desc.blendAlphaOp;
 	blendStateDesc.RenderTarget[0].RenderTargetWriteMask = desc.colorMask;
 
-	if(Demo::renderer->GetDevice()->CreateBlendState(&blendStateDesc, &blendState) != S_OK)
+	if (Demo::renderer->GetDevice()->CreateBlendState(&blendStateDesc, &blendState) != S_OK)
 		return false;
-	
-  return true;
+
+	return true;
 }
 
 void DX11_BlendState::Set() const

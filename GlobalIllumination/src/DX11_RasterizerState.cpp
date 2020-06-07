@@ -16,9 +16,9 @@ bool DX11_RasterizerState::Create(const RasterizerDesc &desc)
 	rasterDesc.CullMode = (D3D11_CULL_MODE)desc.cullMode;
 	rasterDesc.FrontCounterClockwise = TRUE;
 	rasterDesc.ScissorEnable = desc.scissorTest;
-  rasterDesc.MultisampleEnable = desc.multisampleEnable;
+	rasterDesc.MultisampleEnable = desc.multisampleEnable;
 
-	if(Demo::renderer->GetDevice()->CreateRasterizerState(&rasterDesc, &rasterizerState) != S_OK)
+	if (Demo::renderer->GetDevice()->CreateRasterizerState(&rasterDesc, &rasterizerState) != S_OK)
 		return false;
 
 	return true;

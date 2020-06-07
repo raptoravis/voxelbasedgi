@@ -3,7 +3,7 @@
 
 enum vertexElements
 {
-	POSITION_ELEMENT=0,
+	POSITION_ELEMENT = 0,
 	TEXCOORDS_ELEMENT,
 	NORMAL_ELEMENT,
 	TANGENT_ELEMENT,
@@ -12,10 +12,10 @@ enum vertexElements
 
 enum elementFormats
 {
-  R32_FLOAT_EF=0,
-  R32G32_FLOAT_EF,
-  R32G32B32_FLOAT_EF,
-  R32G32B32A32_FLOAT_EF  
+	R32_FLOAT_EF = 0,
+	R32G32_FLOAT_EF,
+	R32G32B32_FLOAT_EF,
+	R32G32B32A32_FLOAT_EF
 };
 
 struct VertexElementDesc
@@ -29,7 +29,7 @@ struct VertexElementDesc
 struct GeometryVertex
 {
 	Vector3 position;
-	Vector2 texCoords;  
+	Vector2 texCoords;
 	Vector3 normal;
 	Vector4 tangent;
 };
@@ -40,6 +40,6 @@ struct FontVertex
 	Vector3 position;
 	Vector2 texCoords;
 	Color color;
-}; 
+};
 
 #endif

@@ -7,17 +7,17 @@
 class Window
 {
 public:
-	Window():
-    hWnd(NULL),
-    hInstance(NULL)
-  {
+	Window() :
+		hWnd(NULL),
+		hInstance(NULL)
+	{
 	}
 
 	~Window()
 	{
 		Destroy();
 	}
-	
+
 	// creates window 
 	bool Create();
 

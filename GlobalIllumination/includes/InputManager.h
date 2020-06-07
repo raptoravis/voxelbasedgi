@@ -9,7 +9,7 @@
 class InputManager
 {
 public:
-  InputManager();
+	InputManager();
 
 	// gets windows input messages
 	bool GetInputMessages(UINT uMsg, WPARAM wParam);
@@ -24,13 +24,13 @@ public:
 	bool GetSingleTriggerState(unsigned char keyCode);
 
 	// gets mouse-position in screen-space
-	POINT GetMousePos(bool windowSpace=false) const;
+	POINT GetMousePos(bool windowSpace = false) const;
 
-  // sets mouse-position in screen-space
-  void SetMousePos(POINT position, bool windowSpace=false) const;
+	// sets mouse-position in screen-space
+	void SetMousePos(POINT position, bool windowSpace = false) const;
 
-  // toggle mouse-cursor
-  void ShowMouseCursor(bool show);
+	// toggle mouse-cursor
+	void ShowMouseCursor(bool show);
 
 private:
 	// sets key-state 
@@ -39,7 +39,7 @@ private:
 	// array of keyInfos (each representing a bitmask, holding flags) 
 	unsigned int keyInfos[NUM_KEY_INFOS];
 
-  bool cursorVisible;
+	bool cursorVisible;
 
 };
 

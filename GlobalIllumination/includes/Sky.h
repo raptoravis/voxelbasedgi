@@ -13,14 +13,14 @@ class DX11_DepthStencilState;
 // Extremely simple sky post-processor. Since all previously rendered opaque geometry  
 // had incremented the stencil buffer, for the sky a constant colored full-screen quad 
 // is only rendered where the stencil buffer is still 0.
-class Sky: public IPostProcessor
+class Sky : public IPostProcessor
 {
-public: 
-	Sky():
-    sceneRT(NULL),
-    rtConfig(NULL),
-    skyShader(NULL),
-    depthStencilState(NULL)
+public:
+	Sky() :
+		sceneRT(NULL),
+		rtConfig(NULL),
+		skyShader(NULL),
+		depthStencilState(NULL)
 	{
 		strcpy(name, "Sky");
 	}
@@ -36,7 +36,7 @@ public:
 
 private:
 	DX11_RenderTarget *sceneRT;
-  DX11_RenderTargetConfig *rtConfig;
+	DX11_RenderTargetConfig *rtConfig;
 	DX11_Shader *skyShader;
 	DX11_DepthStencilState *depthStencilState;
 

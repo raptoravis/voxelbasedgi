@@ -15,41 +15,41 @@ class DX11_Shader;
 // of the GBuffers. In order to cast shadows a shadow map is generated. For indirect illumination the 
 // voxel-grid of the GlobalIllum post-processor is illuminated, whereby the shadow map, that was generated
 // for direct illumination, is reused.
-class DirectionalLight: public ILight
+class DirectionalLight : public ILight
 {
 public:
-  struct BufferData
-  {
-    BufferData():
-      multiplier(0.0f),
-      invShadowMapSize(0.0f)
-    {
-    }
-
-    Vector3 direction;
-    float multiplier;
-    Color color;
-    Matrix4 shadowViewProjMatrix;
-    Matrix4 shadowViewProjTexMatrix;
-    float invShadowMapSize;
-  };
-
-  DirectionalLight():
-    lightShader(NULL),
-    shadowMapShader(NULL),
-    uniformBuffer(NULL),
-    noneCullRS(NULL),
-    backCullRS(NULL),
-    defaultDSS(NULL),
-    noDepthTestDSS(NULL),
-    noColorBS(NULL),
-    blendBS(NULL),
-    rtConfig(NULL),
-    frustumRadius(0.0f),
-    frustumRatio(0.0f)
+	struct BufferData
 	{
-    lightGridShaders[FINE_GRID] = NULL;
-    lightGridShaders[COARSE_GRID] = NULL;
+		BufferData() :
+			multiplier(0.0f),
+			invShadowMapSize(0.0f)
+		{
+		}
+
+		Vector3 direction;
+		float multiplier;
+		Color color;
+		Matrix4 shadowViewProjMatrix;
+		Matrix4 shadowViewProjTexMatrix;
+		float invShadowMapSize;
+	};
+
+	DirectionalLight() :
+		lightShader(NULL),
+		shadowMapShader(NULL),
+		uniformBuffer(NULL),
+		noneCullRS(NULL),
+		backCullRS(NULL),
+		defaultDSS(NULL),
+		noDepthTestDSS(NULL),
+		noColorBS(NULL),
+		blendBS(NULL),
+		rtConfig(NULL),
+		frustumRadius(0.0f),
+		frustumRatio(0.0f)
+	{
+		lightGridShaders[FINE_GRID] = NULL;
+		lightGridShaders[COARSE_GRID] = NULL;
 	}
 
 	bool Create(const Vector3 &direction, const Color &color, float multiplier);
@@ -104,13 +104,13 @@ public:
 
 private:
 	void CalculateFrustum();
-	
+
 	void CalculateMatrices();
 
 	void UpdateUniformBuffer();
 
 	// data for directional light uniform-buffer
-  BufferData bufferData;
+	BufferData bufferData;
 
 	DX11_Shader *lightShader;
 	DX11_Shader *shadowMapShader;
@@ -125,10 +125,10 @@ private:
 	DX11_RenderTargetConfig *rtConfig;
 
 	Matrix4 shadowTexMatrix;
-	Matrix4 shadowProjMatrix;	
+	Matrix4 shadowProjMatrix;
 	float frustumRadius;
-	float frustumRatio; 
-	
+	float frustumRatio;
+
 };
 
 #endif

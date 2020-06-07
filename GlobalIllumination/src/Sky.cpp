@@ -3,20 +3,20 @@
 #include <Sky.h>
 
 bool Sky::Create()
-{	
+{
 	sceneRT = Demo::renderer->GetRenderTarget(GBUFFERS_RT_ID);
-	if(!sceneRT)
+	if (!sceneRT)
 		return false;
 
 	// only render into the accumulation render-target of the GBuffers
 	RtConfigDesc desc;
 	desc.numColorBuffers = 1;
 	rtConfig = Demo::renderer->CreateRenderTargetConfig(desc);
-	if(!rtConfig)
+	if (!rtConfig)
 		return false;
 
 	skyShader = Demo::resourceManager->LoadShader("shaders/sky.sdr");
-	if(!skyShader)
+	if (!skyShader)
 		return false;
 
 	// only render sky, where stencil buffer is still 0
@@ -25,7 +25,7 @@ bool Sky::Create()
 	depthStencilDesc.stencilRef = 1;
 	depthStencilDesc.stencilFunc = GREATER_COMP_FUNC;
 	depthStencilState = Demo::renderer->CreateDepthStencilState(depthStencilDesc);
-	if(!depthStencilState)
+	if (!depthStencilState)
 		return false;
 
 	return true;
@@ -33,7 +33,7 @@ bool Sky::Create()
 
 void Sky::Execute()
 {
-	if(!active)
+	if (!active)
 		return;
 	GpuCmd gpuCmd(DRAW_CM);
 	gpuCmd.order = SKY_CO;
@@ -42,5 +42,5 @@ void Sky::Execute()
 	gpuCmd.draw.shader = skyShader;
 	Demo::renderer->SetupPostProcessSurface(gpuCmd.draw);
 	gpuCmd.draw.depthStencilState = depthStencilState;
-	Demo::renderer->AddGpuCmd(gpuCmd); 
+	Demo::renderer->AddGpuCmd(gpuCmd);
 }

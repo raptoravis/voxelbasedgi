@@ -9,10 +9,10 @@
 class DX11_VertexLayout
 {
 public:
-	DX11_VertexLayout():
-    inputLayout(NULL),
-    vertexElementDescs(NULL),
-    numVertexElementDescs(0)
+	DX11_VertexLayout() :
+		inputLayout(NULL),
+		vertexElementDescs(NULL),
+		numVertexElementDescs(0)
 	{
 	}
 
@@ -27,14 +27,14 @@ public:
 
 	void Bind() const;
 
-  unsigned int CalcVertexSize() const;
+	unsigned int CalcVertexSize() const;
 
-  bool IsEqual(const VertexElementDesc *vertexElementDescs, unsigned int numVertexElementDescs) const;
+	bool IsEqual(const VertexElementDesc *vertexElementDescs, unsigned int numVertexElementDescs) const;
 
 private:
 	ID3D11InputLayout *inputLayout;
-  VertexElementDesc *vertexElementDescs;
-  unsigned int numVertexElementDescs;
+	VertexElementDesc *vertexElementDescs;
+	unsigned int numVertexElementDescs;
 
 };
 

@@ -33,22 +33,22 @@
 // overload memory operators to get new with no-throwing behavior
 inline void* __cdecl operator new(size_t size)
 {
-	return malloc(size); 
+	return malloc(size);
 }
 
 inline void* __cdecl operator new[](size_t size)
-{ 
-	return malloc(size); 
+{
+	return malloc(size);
 }
 
 inline void __cdecl operator delete(void *p)
-{ 
-	free(p); 
+{
+	free(p);
 }
 
 inline void __cdecl operator delete[](void *p)
-{ 
-	free(p); 
+{
+	free(p);
 }
 
 #define SAFE_DELETE(x) { if(x) delete (x); (x) = NULL; }

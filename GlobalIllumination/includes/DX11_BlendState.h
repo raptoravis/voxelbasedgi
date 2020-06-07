@@ -6,37 +6,37 @@
 // descriptor for setting up DX11_BlendState
 struct BlendDesc
 {
-	BlendDesc():
-    srcColorBlend(ONE_BLEND),
-    dstColorBlend(ONE_BLEND),
-    blendColorOp(ADD_BLEND_OP),
-    srcAlphaBlend(ONE_BLEND),
-    dstAlphaBlend(ONE_BLEND),
-    blendAlphaOp(ADD_BLEND_OP),
-    blend(false),
-    colorMask(ALL_COLOR_MASK)
+	BlendDesc() :
+		srcColorBlend(ONE_BLEND),
+		dstColorBlend(ONE_BLEND),
+		blendColorOp(ADD_BLEND_OP),
+		srcAlphaBlend(ONE_BLEND),
+		dstAlphaBlend(ONE_BLEND),
+		blendAlphaOp(ADD_BLEND_OP),
+		blend(false),
+		colorMask(ALL_COLOR_MASK)
 	{
 	}
 
 	bool operator== (const BlendDesc &desc) const
 	{
-		if(srcColorBlend != desc.srcColorBlend)
+		if (srcColorBlend != desc.srcColorBlend)
 			return false;
-		if(dstColorBlend != desc.dstColorBlend)
+		if (dstColorBlend != desc.dstColorBlend)
 			return false;
-		if(blendColorOp != desc.blendColorOp)
+		if (blendColorOp != desc.blendColorOp)
 			return false;
-		if(srcAlphaBlend != desc.srcAlphaBlend)
+		if (srcAlphaBlend != desc.srcAlphaBlend)
 			return false;
-		if(dstAlphaBlend != desc.dstAlphaBlend)
+		if (dstAlphaBlend != desc.dstAlphaBlend)
 			return false;
-		if(blendAlphaOp != desc.blendAlphaOp)
-			return false;	
-		if(constBlendColor != desc.constBlendColor)
+		if (blendAlphaOp != desc.blendAlphaOp)
 			return false;
-    if(blend != desc.blend)
-      return false;
-		if(colorMask != desc.colorMask)
+		if (constBlendColor != desc.constBlendColor)
+			return false;
+		if (blend != desc.blend)
+			return false;
+		if (colorMask != desc.colorMask)
 			return false;
 		return true;
 	}
@@ -46,9 +46,9 @@ struct BlendDesc
 	blendOps blendColorOp;
 	blendOptions srcAlphaBlend;
 	blendOptions dstAlphaBlend;
-	blendOps blendAlphaOp;	
+	blendOps blendAlphaOp;
 	Color constBlendColor;
-  bool blend;
+	bool blend;
 	unsigned char colorMask;
 };
 
@@ -58,8 +58,8 @@ struct BlendDesc
 class DX11_BlendState
 {
 public:
-  DX11_BlendState():
-    blendState(NULL)
+	DX11_BlendState() :
+		blendState(NULL)
 	{
 	}
 

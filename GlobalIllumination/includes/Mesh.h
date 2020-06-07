@@ -8,22 +8,22 @@ class DX11_IndexBuffer;
 // descriptor for setting up a generic mesh
 struct MeshDesc
 {
-  MeshDesc():
-    primitiveType(TRIANGLES_PRIMITIVE),
-    vertexElementDescs(NULL),
-    numVertexElementDescs(0),
-    numVertices(0),
-    numIndices(0),
-    dynamic(false)
-  {
-  }
+	MeshDesc() :
+		primitiveType(TRIANGLES_PRIMITIVE),
+		vertexElementDescs(NULL),
+		numVertexElementDescs(0),
+		numVertices(0),
+		numIndices(0),
+		dynamic(false)
+	{
+	}
 
-  primitiveTypes primitiveType;
-  VertexElementDesc *vertexElementDescs;
-  unsigned int numVertexElementDescs;
-  unsigned int numVertices;
-  unsigned int numIndices;
-  bool dynamic;
+	primitiveTypes primitiveType;
+	VertexElementDesc *vertexElementDescs;
+	unsigned int numVertexElementDescs;
+	unsigned int numVertices;
+	unsigned int numIndices;
+	bool dynamic;
 };
 
 // Mesh
@@ -32,17 +32,17 @@ struct MeshDesc
 class Mesh
 {
 public:
-	Mesh():
-    vertexLayout(NULL),
-    vertexBuffer(NULL),
-    indexBuffer(NULL),
-    primitiveType(TRIANGLES_PRIMITIVE)
+	Mesh() :
+		vertexLayout(NULL),
+		vertexBuffer(NULL),
+		indexBuffer(NULL),
+		primitiveType(TRIANGLES_PRIMITIVE)
 	{
 	}
 
-  bool Create(const MeshDesc &desc);
+	bool Create(const MeshDesc &desc);
 
-  DX11_VertexLayout *vertexLayout;
+	DX11_VertexLayout *vertexLayout;
 	DX11_VertexBuffer *vertexBuffer;
 	DX11_IndexBuffer *indexBuffer;
 	primitiveTypes primitiveType;

@@ -3,16 +3,16 @@
 #include <FinalProcessor.h>
 
 bool FinalProcessor::Create()
-{	
+{
 	sceneRT = Demo::renderer->GetRenderTarget(GBUFFERS_RT_ID);
-  if(!sceneRT)
-    return false;
-	backBufferRT = Demo::renderer->GetRenderTarget(BACK_BUFFER_RT_ID);
-	if(!backBufferRT)
+	if (!sceneRT)
 		return false;
-	
+	backBufferRT = Demo::renderer->GetRenderTarget(BACK_BUFFER_RT_ID);
+	if (!backBufferRT)
+		return false;
+
 	finalPassShader = Demo::resourceManager->LoadShader("shaders/finalPass.sdr");
-	if(!finalPassShader)
+	if (!finalPassShader)
 		return false;
 
 	return true;
@@ -20,13 +20,13 @@ bool FinalProcessor::Create()
 
 void FinalProcessor::Execute()
 {
-	if(!active)
+	if (!active)
 		return;
 	GpuCmd gpuCmd(DRAW_CM);
-  gpuCmd.order = POST_PROCESS_CO;
+	gpuCmd.order = POST_PROCESS_CO;
 	gpuCmd.draw.renderTarget = backBufferRT;
 	gpuCmd.draw.textures[COLOR_TEX_ID] = sceneRT->GetTexture();
 	gpuCmd.draw.shader = finalPassShader;
 	Demo::renderer->SetupPostProcessSurface(gpuCmd.draw);
-	Demo::renderer->AddGpuCmd(gpuCmd); 
+	Demo::renderer->AddGpuCmd(gpuCmd);
 }

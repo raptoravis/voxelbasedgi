@@ -16,10 +16,10 @@ class GlobalIllum;
 
 struct DemoSubmesh
 {
-	DemoSubmesh():
-    material(NULL),
-    firstIndex(0),
-    numIndices(0)
+	DemoSubmesh() :
+		material(NULL),
+		firstIndex(0),
+		numIndices(0)
 	{
 	}
 
@@ -37,19 +37,19 @@ struct DemoSubmesh
 class DemoMesh
 {
 public:
-	DemoMesh():
-    baseVertexLayout(NULL),
-    gridVertexLayout(NULL),
-    shadowVertexLayout(NULL),
-    vertexBuffer(NULL),
-    indexBuffer(NULL),
-    uniformBuffer(NULL),
-    multiRTC(NULL),
-    globalIllumPP(NULL),
-    active(true),
-    performUpdate(true)
+	DemoMesh() :
+		baseVertexLayout(NULL),
+		gridVertexLayout(NULL),
+		shadowVertexLayout(NULL),
+		vertexBuffer(NULL),
+		indexBuffer(NULL),
+		uniformBuffer(NULL),
+		multiRTC(NULL),
+		globalIllumPP(NULL),
+		active(true),
+		performUpdate(true)
 	{
-	  name[0] = 0;
+		name[0] = 0;
 	}
 
 	~DemoMesh()
@@ -80,13 +80,13 @@ public:
 
 	void SetPosition(const Vector3 &position);
 
-	Vector3 GetPosition() const 
+	Vector3 GetPosition() const
 	{
 		return position;
 	}
 
-private:	 
-  void Update();
+private:
+	void Update();
 
 	// adds surfaces for filling the GBuffers
 	void AddBaseSurfaces();
@@ -100,19 +100,19 @@ private:
 	// data for uniform-buffer
 	Vector3 position;
 
-  DX11_VertexLayout *baseVertexLayout;
-  DX11_VertexLayout *gridVertexLayout;
-  DX11_VertexLayout *shadowVertexLayout;
-  DX11_VertexBuffer *vertexBuffer;
+	DX11_VertexLayout *baseVertexLayout;
+	DX11_VertexLayout *gridVertexLayout;
+	DX11_VertexLayout *shadowVertexLayout;
+	DX11_VertexBuffer *vertexBuffer;
 	DX11_IndexBuffer *indexBuffer;
 	DX11_UniformBuffer *uniformBuffer;
-	DX11_RenderTargetConfig *multiRTC; 
+	DX11_RenderTargetConfig *multiRTC;
 	GlobalIllum *globalIllumPP;
 
-  List<DemoSubmesh*> subMeshes; // list of all sub-meshes
-  char name[DEMO_MAX_FILENAME];
-  bool active;
-  bool performUpdate;
+	List<DemoSubmesh*> subMeshes; // list of all sub-meshes
+	char name[DEMO_MAX_FILENAME];
+	bool active;
+	bool performUpdate;
 
 };
 

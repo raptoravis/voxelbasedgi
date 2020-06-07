@@ -3,11 +3,11 @@
 
 void FileManager::AddDirectory(const char *directory)
 {
-	if(!directory)
+	if (!directory)
 		return;
-	for(unsigned int i=0; i<directories.GetSize(); i++)
+	for (unsigned int i = 0; i < directories.GetSize(); i++)
 	{
-		if(strcmp(directories[i], directory) == 0)
+		if (strcmp(directories[i], directory) == 0)
 			return;
 	}
 	char newDirectory[DEMO_MAX_STRING];
@@ -22,23 +22,23 @@ void FileManager::RemoveDirectories()
 
 bool FileManager::FilePathExists(const char *filePath) const
 {
-	if(!filePath)
+	if (!filePath)
 		return false;
-	return (GetFileAttributes(filePath) != 0xFFFFFFFF); 
+	return (GetFileAttributes(filePath) != 0xFFFFFFFF);
 }
 
 bool FileManager::SetWorkDirectory(const char *workDirectory) const
 {
-	if(!workDirectory)
+	if (!workDirectory)
 		return false;
 	return (_chdir(workDirectory) == 0);
 }
 
 bool FileManager::GetExeDirectory(char *exeDirectory) const
 {
-	if(!exeDirectory)
+	if (!exeDirectory)
 		return false;
-	if(GetModuleFileName(NULL, exeDirectory, DEMO_MAX_FILEPATH) == 0)
+	if (GetModuleFileName(NULL, exeDirectory, DEMO_MAX_FILEPATH) == 0)
 		return false;
 	std::string directory = exeDirectory;
 	directory = directory.substr(0, directory.find_last_of('\\'));
@@ -48,31 +48,31 @@ bool FileManager::GetExeDirectory(char *exeDirectory) const
 
 bool FileManager::GetFilePath(const char *fileName, char *filePath) const
 {
-	if((!fileName) || (!filePath))
+	if ((!fileName) || (!filePath))
 		return false;
-	for(unsigned int i=0; i<directories.GetSize(); i++)
+	for (unsigned int i = 0; i < directories.GetSize(); i++)
 	{
 		strcpy(filePath, directories[i]);
 		strcat(filePath, fileName);
-		if(FilePathExists(filePath))
+		if (FilePathExists(filePath))
 			return true;
-	}  
+	}
 	return false;
 }
 
 bool FileManager::GetFileName(const char *filePath, char *fileName) const
 {
-	if((!filePath) || (!fileName))
-	  return false;
+	if ((!filePath) || (!fileName))
+		return false;
 	std::string filename = filePath;
 	int indexA = filename.find_last_of("/");
 	int indexB = filename.find_last_of("\\");
 	int index = (indexA > indexB) ? indexA : indexB;
-	if(index > -1)
-		filename.erase(0, index+1);
+	if (index > -1)
+		filename.erase(0, index + 1);
 	index = filename.find_last_of(".");
-	if(index > -1)
-		filename.erase(index, filename.length()-index);
+	if (index > -1)
+		filename.erase(index, filename.length() - index);
 	strcpy(fileName, filename.c_str());
 	return true;
 }

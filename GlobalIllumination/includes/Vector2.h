@@ -20,26 +20,26 @@ public:
 
 	bool operator== (const Vector2 &vec) const
 	{
-    if(!IS_EQUAL(x, vec.x))
-      return false;
-    if(!IS_EQUAL(y, vec.y))
-      return false;
-    return true;
+		if (!IS_EQUAL(x, vec.x))
+			return false;
+		if (!IS_EQUAL(y, vec.y))
+			return false;
+		return true;
 	}
 
 	bool operator!= (const Vector2 &vec) const
-	{	
+	{
 		return !((*this) == vec);
 	}
 
 	Vector2 operator+ (const Vector2 &vec) const
 	{
-		return Vector2(x+vec.x, y+vec.y);
+		return Vector2(x + vec.x, y + vec.y);
 	}
 
 	Vector2 operator- (const Vector2 &vec) const
 	{
-		return Vector2(x-vec.x, y-vec.y);
+		return Vector2(x - vec.x, y - vec.y);
 	}
 
 	Vector2 operator- () const
@@ -53,34 +53,34 @@ public:
 	}
 
 	Vector2 operator/ (float scalar) const
-	{	
-		const float inv = 1.0f/scalar;
-	  return Vector2(x*inv, y*inv);	
+	{
+		const float inv = 1.0f / scalar;
+		return Vector2(x*inv, y*inv);
 	}
 
 	void operator+= (const Vector2 &rhs)
-	{	
-		x += rhs.x;	
+	{
+		x += rhs.x;
 		y += rhs.y;
 	}
 
 	void operator-= (const Vector2 &rhs)
-	{	
-	  x -= rhs.x;	
-	  y -= rhs.y;
+	{
+		x -= rhs.x;
+		y -= rhs.y;
 	}
 
 	void operator*= (float rhs)
-	{	
-	  x *= rhs;	
-		y *= rhs;	
+	{
+		x *= rhs;
+		y *= rhs;
 	}
 
 	void operator/= (float rhs)
-	{	
-	  const float inv = 1.0f/rhs;
-	 	x *= inv; 
-		y *= inv;	
+	{
+		const float inv = 1.0f / rhs;
+		x *= inv;
+		y *= inv;
 	}
 
 	float operator[](int index) const
@@ -88,30 +88,30 @@ public:
 		return (&x)[index];
 	}
 
-	float& operator[](int index) 
+	float& operator[](int index)
 	{
 		return (&x)[index];
 	}
 
-	operator float* () const 
+	operator float* () const
 	{
-		return (float*) this;
+		return (float*)this;
 	}
 
-	operator const float* () const 
+	operator const float* () const
 	{
-		return (const float*) this;
+		return (const float*)this;
 	}
 
 	void Set(float x, float y)
 	{
 		this->x = x;
-		this->y = y; 
+		this->y = y;
 	}
 
 	void SetZero()
-	{  
-		x = y = 0.0f; 
+	{
+		x = y = 0.0f;
 	}
 
 	void SetMin()
@@ -125,7 +125,7 @@ public:
 	}
 
 	float x, y;
-	
+
 };
 
 #endif

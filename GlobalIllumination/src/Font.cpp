@@ -16,14 +16,14 @@ bool Font::Load(const char *fileName)
 	Demo::fileManager->GetFilePath(fileName, filePath);
 	FILE *file;
 	fopen_s(&file, filePath, "rb");
-	if(!file)
+	if (!file)
 		return false;
 
 	// check idString
 	char idString[10];
 	memset(idString, 0, 10);
 	fread(idString, sizeof(char), 9, file);
-	if(strcmp(idString, "DEMO_FONT") != 0)
+	if (strcmp(idString, "DEMO_FONT") != 0)
 	{
 		fclose(file);
 		return false;
@@ -32,7 +32,7 @@ bool Font::Load(const char *fileName)
 	// check version
 	unsigned int version;
 	fread(&version, sizeof(unsigned int), 1, file);
-	if(version != CURRENT_FONT_VERSION)
+	if (version != CURRENT_FONT_VERSION)
 	{
 		fclose(file);
 		return false;
@@ -42,7 +42,7 @@ bool Font::Load(const char *fileName)
 	char fontMaterialName[256];
 	fread(fontMaterialName, sizeof(char), 256, file);
 	material = Demo::resourceManager->LoadMaterial(fontMaterialName);
-	if(!material)
+	if (!material)
 	{
 		fclose(file);
 		return false;
@@ -56,15 +56,15 @@ bool Font::Load(const char *fileName)
 
 	// get number of texCoords
 	fread(&numTexCoords, sizeof(unsigned int), 1, file);
-	if(numTexCoords < 1)
+	if (numTexCoords < 1)
 	{
 		fclose(file);
 		return false;
 	}
 
-  // load texCoords
+	// load texCoords
 	texCoords = new float[numTexCoords];
-	if(!texCoords)
+	if (!texCoords)
 	{
 		fclose(file);
 		return false;
@@ -75,15 +75,15 @@ bool Font::Load(const char *fileName)
 
 	// create vertex layout
 	VertexElementDesc vertexElementDescs[3] = { POSITION_ELEMENT, R32G32B32_FLOAT_EF, 0,
-																				      TEXCOORDS_ELEMENT, R32G32_FLOAT_EF, 12,
-                                              COLOR_ELEMENT, R32G32B32A32_FLOAT_EF, 20 };
-  vertexLayout = Demo::renderer->CreateVertexLayout(vertexElementDescs, 3);
-  if(!vertexLayout)
-    return false;
+																					  TEXCOORDS_ELEMENT, R32G32_FLOAT_EF, 12,
+											  COLOR_ELEMENT, R32G32B32A32_FLOAT_EF, 20 };
+	vertexLayout = Demo::renderer->CreateVertexLayout(vertexElementDescs, 3);
+	if (!vertexLayout)
+		return false;
 
-  // create dynamic vertex buffer
+	// create dynamic vertex buffer
 	vertexBuffer = Demo::renderer->CreateVertexBuffer(sizeof(FontVertex), FONT_MAX_VERTEX_COUNT, true);
-	if(!vertexBuffer)
+	if (!vertexBuffer)
 	{
 		SAFE_DELETE_ARRAY(texCoords);
 		return false;
@@ -96,12 +96,12 @@ void Font::Print(const Vector2 &position, float scale, const Color &color, const
 {
 	char str[FONT_MAX_TEXT_LENGTH];
 	va_list va;
-	if(!string)
+	if (!string)
 		return;
 	va_start(va, string);
-	unsigned int length = _vscprintf(string, va)+1;
-	if(length > FONT_MAX_TEXT_LENGTH) 
-	{ 
+	unsigned int length = _vscprintf(string, va) + 1;
+	if (length > FONT_MAX_TEXT_LENGTH)
+	{
 		va_end(va);
 		return;
 	}
@@ -111,62 +111,62 @@ void Font::Print(const Vector2 &position, float scale, const Color &color, const
 	char *text = str;
 	float positionX = position.x;
 	float positionY = position.y;
-	positionX -= (float)(fontSpacing/fontHeight)+(scale*0.5f);
-	const float startX = positionX; 
+	positionX -= (float)(fontSpacing / fontHeight) + (scale*0.5f);
+	const float startX = positionX;
 	float aspectRatio = Demo::renderer->GetCamera(MAIN_CAMERA_ID)->GetAspectRatio();
-  const float scaleX = scale;
-  const float scaleY = scale*aspectRatio;
-  const int maxCharIndex = numTexCoords/4;
-	FontVertex vertices[2]; 
-	while(*text)
+	const float scaleX = scale;
+	const float scaleY = scale * aspectRatio;
+	const int maxCharIndex = numTexCoords / 4;
+	FontVertex vertices[2];
+	while (*text)
 	{
-		char c = *text++; 
-		if(c == '\n')
+		char c = *text++;
+		if (c == '\n')
 		{
 			positionX = startX;
-			positionY -= ((texCoords[3]-texCoords[1])*textureHeight/(float)fontHeight)*scaleY;
+			positionY -= ((texCoords[3] - texCoords[1])*textureHeight / (float)fontHeight)*scaleY;
 		}
-		int charIndex = c-32;
-		if((charIndex < 0) || (charIndex >= maxCharIndex))
+		int charIndex = c - 32;
+		if ((charIndex < 0) || (charIndex >= maxCharIndex))
 			continue;
-		float tx1 = texCoords[charIndex*4];
-		float ty1 = texCoords[charIndex*4+3];
-		float tx2 = texCoords[charIndex*4+2];  
-		float ty2 = texCoords[charIndex*4+1];
-		float width = ((tx2-tx1)*textureWidth/(float)fontHeight)*scaleX;
-		float height = ((ty1-ty2)*textureHeight/(float)fontHeight)*scaleY;
-		if(c != ' ')
-		{  
+		float tx1 = texCoords[charIndex * 4];
+		float ty1 = texCoords[charIndex * 4 + 3];
+		float tx2 = texCoords[charIndex * 4 + 2];
+		float ty2 = texCoords[charIndex * 4 + 1];
+		float width = ((tx2 - tx1)*textureWidth / (float)fontHeight)*scaleX;
+		float height = ((ty1 - ty2)*textureHeight / (float)fontHeight)*scaleY;
+		if (c != ' ')
+		{
 			vertices[0].position = Vector3(positionX, positionY, 0.0f);
 			vertices[0].texCoords = Vector2(tx1, ty1);
 			vertices[0].color = color;
-			vertices[1].position = Vector3(positionX+width, positionY+height, 0.0f);
+			vertices[1].position = Vector3(positionX + width, positionY + height, 0.0f);
 			vertices[1].texCoords = Vector2(tx2, ty2);
 			vertices[1].color = color;
 			vertexBuffer->AddVertices(2, (float*)vertices);
 		}
 
-		positionX += width-(2.0f*fontSpacing*scaleX)/(float)fontHeight;
+		positionX += width - (2.0f*fontSpacing*scaleX) / (float)fontHeight;
 	}
 }
 
-void Font::AddSurfaces() 
+void Font::AddSurfaces()
 {
-	if(!active)
+	if (!active)
 		return;
 
 	vertexBuffer->Update();
 
-	GpuCmd gpuCmd(DRAW_CM); 
-  gpuCmd.order = GUI_CO;
-  gpuCmd.draw.renderTarget = Demo::renderer->GetRenderTarget(BACK_BUFFER_RT_ID);
-  gpuCmd.draw.vertexLayout = vertexLayout;
+	GpuCmd gpuCmd(DRAW_CM);
+	gpuCmd.order = GUI_CO;
+	gpuCmd.draw.renderTarget = Demo::renderer->GetRenderTarget(BACK_BUFFER_RT_ID);
+	gpuCmd.draw.vertexLayout = vertexLayout;
 	gpuCmd.draw.vertexBuffer = vertexBuffer;
 	gpuCmd.draw.primitiveType = LINES_PRIMITIVE;
 	gpuCmd.draw.firstIndex = 0;
-	gpuCmd.draw.numElements = vertexBuffer->GetVertexCount(); 
+	gpuCmd.draw.numElements = vertexBuffer->GetVertexCount();
 	gpuCmd.draw.textures[COLOR_TEX_ID] = material->colorTexture;
-  gpuCmd.draw.samplers[COLOR_TEX_ID] = Demo::renderer->GetSampler(TRILINEAR_SAMPLER_ID);
+	gpuCmd.draw.samplers[COLOR_TEX_ID] = Demo::renderer->GetSampler(TRILINEAR_SAMPLER_ID);
 	gpuCmd.draw.rasterizerState = material->rasterizerState;
 	gpuCmd.draw.depthStencilState = material->depthStencilState;
 	gpuCmd.draw.blendState = material->blendState;

@@ -14,27 +14,27 @@
 class Demo
 {
 public:
-  static bool Create();
+	static bool Create();
 
-  static void Release();
+	static void Release();
 
-  // manager for file operations
-  static FileManager *fileManager;
+	// manager for file operations
+	static FileManager *fileManager;
 
-  // application window
-  static Window *window;
+	// application window
+	static Window *window;
 
-  // manager for timing
-  static TimeManager *timeManager;
+	// manager for timing
+	static TimeManager *timeManager;
 
-  // manager for input (keyboard/ mouse)
-  static InputManager *inputManager;
+	// manager for input (keyboard/ mouse)
+	static InputManager *inputManager;
 
-  // DirectX 11 renderer
-  static DX11_Renderer *renderer;
+	// DirectX 11 renderer
+	static DX11_Renderer *renderer;
 
-  // manager for resources
-  static ResourceManager *resourceManager;
+	// manager for resources
+	static ResourceManager *resourceManager;
 
 };
 

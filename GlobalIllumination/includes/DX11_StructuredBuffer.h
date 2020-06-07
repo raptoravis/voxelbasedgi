@@ -9,12 +9,12 @@
 class DX11_StructuredBuffer
 {
 public:
-	DX11_StructuredBuffer():
-    elementCount(0),
-    elementSize(0),
-    structuredBuffer(NULL),
-    unorderedAccessView(NULL),
-    shaderResourceView(NULL)
+	DX11_StructuredBuffer() :
+		elementCount(0),
+		elementSize(0),
+		structuredBuffer(NULL),
+		unorderedAccessView(NULL),
+		shaderResourceView(NULL)
 	{
 	}
 
@@ -27,7 +27,7 @@ public:
 
 	bool Create(unsigned int elementCount, unsigned int elementSize);
 
-	void Bind(structuredBufferBP bindingPoint, shaderTypes shaderType=VERTEX_SHADER) const;
+	void Bind(structuredBufferBP bindingPoint, shaderTypes shaderType = VERTEX_SHADER) const;
 
 	unsigned int GetElementCount() const
 	{
@@ -39,10 +39,10 @@ public:
 		return elementCount;
 	}
 
-  ID3D11UnorderedAccessView* GetUnorderdAccessView() const 
-  {
-    return unorderedAccessView; 
-  }
+	ID3D11UnorderedAccessView* GetUnorderdAccessView() const
+	{
+		return unorderedAccessView;
+	}
 
 private:
 	unsigned int elementCount; // number of structured elements in buffer

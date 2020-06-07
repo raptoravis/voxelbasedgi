@@ -9,39 +9,39 @@
 class PathPointLight
 {
 public:
-  PathPointLight():
-    pointLight(NULL),
-    paused(false)
-  {
-  }
+	PathPointLight() :
+		pointLight(NULL),
+		paused(false)
+	{
+	}
 
-  bool Init(const Vector3 &position, float radius, const Color &color, float multiplier, const Vector3 &direction);
+	bool Init(const Vector3 &position, float radius, const Color &color, float multiplier, const Vector3 &direction);
 
-  void Update();
+	void Update();
 
-  void SetActive(bool active)
-  {
-    pointLight->SetActive(active);
-  }
+	void SetActive(bool active)
+	{
+		pointLight->SetActive(active);
+	}
 
-  void SetPaused(bool paused)
-  {
-    this->paused = paused;
-  }
+	void SetPaused(bool paused)
+	{
+		this->paused = paused;
+	}
 
-  static void SetControlPoints(float minX, float maxX, float minZ, float maxZ)
-  {
-    controlPoints[0] = minX;
-    controlPoints[1] = maxX;
-    controlPoints[2] = minZ;
-    controlPoints[3] = maxZ;
-  }
+	static void SetControlPoints(float minX, float maxX, float minZ, float maxZ)
+	{
+		controlPoints[0] = minX;
+		controlPoints[1] = maxX;
+		controlPoints[2] = minZ;
+		controlPoints[3] = maxZ;
+	}
 
-private:  
-  PointLight *pointLight;
-  Vector3 direction;
-  bool paused;
-  static float controlPoints[4];
+private:
+	PointLight *pointLight;
+	Vector3 direction;
+	bool paused;
+	static float controlPoints[4];
 
 };
 

@@ -23,15 +23,15 @@ bool DX11_Sampler::Create(const SamplerDesc &desc)
 	samplerDesc.MinLOD = desc.minLOD;
 	samplerDesc.MaxLOD = desc.maxLOD;
 
-	if(Demo::renderer->GetDevice()->CreateSamplerState(&samplerDesc, &sampler) != S_OK)
+	if (Demo::renderer->GetDevice()->CreateSamplerState(&samplerDesc, &sampler) != S_OK)
 		return false;
-	
+
 	return true;
 }
 
 void DX11_Sampler::Bind(textureBP bindingPoint, shaderTypes shaderType) const
 {
-	switch(shaderType)
+	switch (shaderType)
 	{
 	case VERTEX_SHADER:
 		Demo::renderer->GetDeviceContext()->VSSetSamplers(bindingPoint, 1, &sampler);
@@ -42,13 +42,13 @@ void DX11_Sampler::Bind(textureBP bindingPoint, shaderTypes shaderType) const
 		break;
 
 	case FRAGMENT_SHADER:
-    Demo::renderer->GetDeviceContext()->PSSetSamplers(bindingPoint, 1, &sampler);
+		Demo::renderer->GetDeviceContext()->PSSetSamplers(bindingPoint, 1, &sampler);
 		break;
 
 	case COMPUTE_SHADER:
 		Demo::renderer->GetDeviceContext()->CSSetSamplers(bindingPoint, 1, &sampler);
 		break;
-	}	
+	}
 }
 
 

@@ -8,16 +8,16 @@ template <class T>
 class List
 {
 public:
-	List(): 
-    entries(NULL),
-    numEntries(0),
-    listSize(0)   
+	List() :
+		entries(NULL),
+		numEntries(0),
+		listSize(0)
 	{
 	}
 
 	~List()
 	{
-		if(entries)
+		if (entries)
 			free(entries);
 		entries = NULL;
 	}
@@ -40,11 +40,11 @@ public:
 	// adds one new element to end of list
 	int AddElement(const T *newEntry)
 	{
-		if((listSize-numEntries) < 1)
+		if ((listSize - numEntries) < 1)
 		{
-			if(!ChangeSpace(numEntries+1))
+			if (!ChangeSpace(numEntries + 1))
 				return -1;
-		} 
+		}
 		memcpy(&entries[numEntries], newEntry, sizeof(T));
 		int firstEntryIndex = numEntries;
 		numEntries++;
@@ -54,12 +54,12 @@ public:
 	// adds count elements to end of list
 	int AddElements(unsigned int count, const T *newEntries)
 	{
-		if((listSize-numEntries) < count)
+		if ((listSize - numEntries) < count)
 		{
-  		if(!ChangeSpace(numEntries+count))
+			if (!ChangeSpace(numEntries + count))
 				return -1;
-		} 
-		memcpy(&entries[numEntries], newEntries, count*sizeof(T));
+		}
+		memcpy(&entries[numEntries], newEntries, count * sizeof(T));
 		int firstEntryIndex = numEntries;
 		numEntries += count;
 		return firstEntryIndex;
@@ -67,22 +67,22 @@ public:
 
 	// gets number of currently used elements (not the actual list-size!!)
 	unsigned int GetSize() const
-	{	
-		return numEntries;	
+	{
+		return numEntries;
 	}
 
 	// changes size of list
 	bool Resize(unsigned int count)
 	{
-		if(listSize < count)
+		if (listSize < count)
 		{
-			if(!ChangeSpace(count))
+			if (!ChangeSpace(count))
 				return false;
-		} 
+		}
 		else
 		{
 			numEntries = count;
-			if(!ChangeSpace(count))
+			if (!ChangeSpace(count))
 				return false;
 		}
 		return true;
@@ -90,21 +90,21 @@ public:
 
 	// resets number of currently used elements (not the actual list-size!!)
 	void Clear()
-	{	
-		numEntries = 0;	
+	{
+		numEntries = 0;
 	}
 
 	// frees elements of list
 	void Erase()
 	{
 		numEntries = 0;
-		listSize = 0; 
-		if(entries)
+		listSize = 0;
+		if (entries)
 			free(entries);
 		entries = NULL;
 	}
 
-  // performs a qsort on elements, based on passed compare-function
+	// performs a qsort on elements, based on passed compare-function
 	void Sort(int(__cdecl *compare)(const void*, const void*))
 	{
 		qsort(entries, numEntries, sizeof(T), compare);
@@ -114,15 +114,15 @@ protected:
 	// change memory-size of list
 	bool ChangeSpace(unsigned int newSize)
 	{
-		T *newEntries = (T*)realloc(entries, sizeof(T)*newSize); 
-		if((!newEntries) && (newSize > 0))
+		T *newEntries = (T*)realloc(entries, sizeof(T)*newSize);
+		if ((!newEntries) && (newSize > 0))
 			return false;
 		entries = newEntries;
 		listSize = newSize;
 		return true;
 	}
 
-  T *entries; // elements of list
+	T *entries; // elements of list
 	unsigned int numEntries; // number of currently used elements
 	unsigned int listSize; // overall size of list (memory-size)
 

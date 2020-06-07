@@ -7,12 +7,12 @@
 class DX11_IndexBuffer
 {
 public:
-	DX11_IndexBuffer():
-    indexBuffer(NULL),
-    indices(NULL),
-    currentIndexCount(0),
-    maxIndexCount(0),
-    dynamic(false)
+	DX11_IndexBuffer() :
+		indexBuffer(NULL),
+		indices(NULL),
+		currentIndexCount(0),
+		maxIndexCount(0),
+		dynamic(false)
 	{
 	}
 
@@ -27,7 +27,7 @@ public:
 
 	void Clear()
 	{
-	  currentIndexCount = 0;
+		currentIndexCount = 0;
 	}
 
 	unsigned int AddIndices(unsigned int numIndices, const unsigned int *newIndices);
@@ -47,11 +47,11 @@ public:
 	}
 
 private:
-  ID3D11Buffer *indexBuffer;
-  unsigned int *indices; 
-  unsigned int currentIndexCount; // current count of indices
-  unsigned int maxIndexCount; // max count of indices that index buffer can handle
-  bool dynamic;
+	ID3D11Buffer *indexBuffer;
+	unsigned int *indices;
+	unsigned int currentIndexCount; // current count of indices
+	unsigned int maxIndexCount; // max count of indices that index buffer can handle
+	bool dynamic;
 
 };
 

@@ -18,19 +18,19 @@ class Material;
 // the corresponding part of the font-texture is mapped onto a quad. All text from the same font is 
 // collected and rendered in a single draw-batch.
 class Font
-{        
-public:	
-	Font():
-    textureWidth(0),
-    textureHeight(0),	 
-    fontHeight(0),
-    fontSpacing(0),
-    numTexCoords(0),
-    texCoords(NULL),
-    material(NULL),
-    vertexLayout(NULL),
-    vertexBuffer(NULL),
-    active(true)
+{
+public:
+	Font() :
+		textureWidth(0),
+		textureHeight(0),
+		fontHeight(0),
+		fontSpacing(0),
+		numTexCoords(0),
+		texCoords(NULL),
+		material(NULL),
+		vertexLayout(NULL),
+		vertexBuffer(NULL),
+		active(true)
 	{
 		name[0] = 0;
 	}
@@ -42,16 +42,16 @@ public:
 
 	void Release();
 
-	bool Load(const char *fileName);	
+	bool Load(const char *fileName);
 
 	void Print(const Vector2 &position, float scale, const Color &color, const char *string, ...);
 
-	void AddSurfaces();  
+	void AddSurfaces();
 
 	void SetActive(bool active)
 	{
 		this->active = active;
-	}    
+	}
 
 	bool IsActive() const
 	{
@@ -59,7 +59,7 @@ public:
 	}
 
 	const char* GetName() const
-	{ 
+	{
 		return name;
 	}
 
@@ -69,13 +69,13 @@ private:
 	unsigned int fontSpacing; // spacing of used font
 	unsigned int numTexCoords; // number of texCoords
 	float *texCoords; // texCoords for fetching corresponding part for each character from font-texture
-  
+
 	Material *material;
-  DX11_VertexLayout *vertexLayout;
+	DX11_VertexLayout *vertexLayout;
 	DX11_VertexBuffer *vertexBuffer;
 
-  char name[DEMO_MAX_FILENAME];
-  bool active;
+	char name[DEMO_MAX_FILENAME];
+	bool active;
 
 };
 

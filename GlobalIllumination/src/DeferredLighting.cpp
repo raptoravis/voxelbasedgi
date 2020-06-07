@@ -4,8 +4,8 @@
 
 void DeferredLighting::Execute()
 {
-	if(!active)
+	if (!active)
 		return;
-	for(unsigned int i=0; i<Demo::renderer->GetNumLights(); i++) 
-    Demo::renderer->GetLight(i)->AddLitSurface();
+	for (unsigned int i = 0; i < Demo::renderer->GetNumLights(); i++)
+		Demo::renderer->GetLight(i)->AddLitSurface();
 }

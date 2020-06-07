@@ -9,9 +9,9 @@
 class DX11_UniformBuffer
 {
 public:
-	DX11_UniformBuffer():
-    size(0),
-    uniformBuffer(NULL)	
+	DX11_UniformBuffer() :
+		size(0),
+		uniformBuffer(NULL)
 	{
 	}
 
@@ -28,11 +28,11 @@ public:
 	// to upload data in 1 block.
 	bool Update(const void *uniformBufferData);
 
-	void Bind(uniformBufferBP bindingPoint, shaderTypes shaderType=VERTEX_SHADER) const;
+	void Bind(uniformBufferBP bindingPoint, shaderTypes shaderType = VERTEX_SHADER) const;
 
 private:
 	unsigned int size; // size of uniform data
-	ID3D11Buffer *uniformBuffer;  
+	ID3D11Buffer *uniformBuffer;
 
 };
 

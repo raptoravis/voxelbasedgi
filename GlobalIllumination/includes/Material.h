@@ -28,16 +28,16 @@
 class Material
 {
 public:
-	Material():
-    colorTexture(NULL),
-    normalTexture(NULL),
-    specularTexture(NULL),
-    rasterizerState(NULL),
-    depthStencilState(NULL),
-    blendState(NULL),
-    shader(NULL)
+	Material() :
+		colorTexture(NULL),
+		normalTexture(NULL),
+		specularTexture(NULL),
+		rasterizerState(NULL),
+		depthStencilState(NULL),
+		blendState(NULL),
+		shader(NULL)
 	{
-    name[0] = 0;
+		name[0] = 0;
 	}
 
 	bool Load(const char *fileName);
@@ -58,18 +58,18 @@ public:
 private:
 	// load "Textures"-block
 	bool LoadTextures(std::ifstream &file);
-	
+
 	// load "RenderStates"-block
 	void LoadRenderStates(std::ifstream &file);
-	
+
 	// load "Shader"-block
 	bool LoadShader(std::ifstream &file);
-	
+
 	char name[DEMO_MAX_FILENAME];
-	RasterizerDesc rasterDesc;	
+	RasterizerDesc rasterDesc;
 	DepthStencilDesc depthStencilDesc;
 	BlendDesc blendDesc;
-	
+
 };
 
 #endif

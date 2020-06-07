@@ -13,7 +13,7 @@
 // Manages resources (shaders, textures, materials, fonts, demo-meshes).
 class ResourceManager
 {
-public: 
+public:
 	ResourceManager()
 	{
 	}
@@ -26,9 +26,9 @@ public:
 	void Release();
 
 	// loads ".sdr" shader-file (references the actual shader source files)
-	DX11_Shader* LoadShader(const char *fileName, unsigned int permutationMask=0);
-	
-	DX11_Texture* LoadTexture(const char *fileName); 
+	DX11_Shader* LoadShader(const char *fileName, unsigned int permutationMask = 0);
+
+	DX11_Texture* LoadTexture(const char *fileName);
 
 	// loads ".mtl" material-file
 	Material* LoadMaterial(const char *fileName);
@@ -37,19 +37,19 @@ public:
 	Font* LoadFont(const char *fileName);
 
 	Font* GetFont(unsigned int index) const
-  {
-    assert(index < fonts.GetSize());
-    return fonts[index];
-  }
+	{
+		assert(index < fonts.GetSize());
+		return fonts[index];
+	}
 
 	// loads ".mesh" mesh-file
 	DemoMesh* LoadDemoMesh(const char *fileName);
 
-  DemoMesh* GetDemoMesh(unsigned int index) const
-  {
-    assert(index < demoMeshes.GetSize());
-    return demoMeshes[index];
-  }
+	DemoMesh* GetDemoMesh(unsigned int index) const
+	{
+		assert(index < demoMeshes.GetSize());
+		return demoMeshes[index];
+	}
 
 	unsigned int GetNumFonts() const
 	{

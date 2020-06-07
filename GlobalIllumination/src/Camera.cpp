@@ -4,22 +4,22 @@
 
 bool Camera::Init(float fovy, float aspectRatio, float nearClipDistance, float farClipDistance)
 {
-	this->fovy = fovy;	
+	this->fovy = fovy;
 	this->aspectRatio = aspectRatio;
-	if((nearClipDistance <= 0.0f) || (farClipDistance <= 0.0f))
+	if ((nearClipDistance <= 0.0f) || (farClipDistance <= 0.0f))
 		return false;
 	bufferData.nearClipDistance = nearClipDistance;
 	bufferData.farClipDistance = farClipDistance;
-	bufferData.nearFarClipDistance = farClipDistance-nearClipDistance;
-	bufferData.projMatrix.SetPerspective(fovy, aspectRatio, nearClipDistance, farClipDistance);	
-	invProjMatrix = bufferData.projMatrix.GetInverse();	
+	bufferData.nearFarClipDistance = farClipDistance - nearClipDistance;
+	bufferData.projMatrix.SetPerspective(fovy, aspectRatio, nearClipDistance, farClipDistance);
+	invProjMatrix = bufferData.projMatrix.GetInverse();
 
 	uniformBuffer = Demo::renderer->CreateUniformBuffer(sizeof(BufferData));
-	if(!uniformBuffer)
+	if (!uniformBuffer)
 		return false;
-	
+
 	UpdateUniformBuffer();
-	
+
 	return true;
 }
 
@@ -37,13 +37,13 @@ void Camera::Update(const Vector3 &position, const Vector3 &rotation)
 	yRotMatrix.SetRotationX(rotation.y);
 	zRotMatrix.SetRotationZ(rotation.z);
 	transMatrix.SetTranslation(-position);
-	rotMatrix = zRotMatrix*yRotMatrix*xRotMatrix;
-	bufferData.viewMatrix = rotMatrix*transMatrix;
+	rotMatrix = zRotMatrix * yRotMatrix*xRotMatrix;
+	bufferData.viewMatrix = rotMatrix * transMatrix;
 	bufferData.viewProjMatrix = bufferData.projMatrix*bufferData.viewMatrix;
 	bufferData.invViewProjMatrix = bufferData.viewProjMatrix.GetInverse();
 
 	direction.Set(-bufferData.viewMatrix.entries[2], -bufferData.viewMatrix.entries[6], -bufferData.viewMatrix.entries[10]);
-  direction.Normalize();
+	direction.Normalize();
 
 	UpdateUniformBuffer();
 }

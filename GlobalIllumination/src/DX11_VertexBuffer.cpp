@@ -4,26 +4,26 @@
 
 void DX11_VertexBuffer::Release()
 {
-  SAFE_RELEASE(vertexBuffer);
-  SAFE_DELETE_ARRAY(vertices);
+	SAFE_RELEASE(vertexBuffer);
+	SAFE_DELETE_ARRAY(vertices);
 }
 
 bool DX11_VertexBuffer::Create(unsigned int vertexSize, unsigned int maxVertexCount, bool dynamic)
-{	
-  if((vertexSize < 1) || (maxVertexCount < 1))
-    return false;
+{
+	if ((vertexSize < 1) || (maxVertexCount < 1))
+		return false;
 
-  this->vertexSize = vertexSize;
-  this->maxVertexCount = maxVertexCount;
-  this->dynamic = dynamic;
-  vertices = new char[vertexSize*maxVertexCount];
-  if(!vertices)
-    return false;
+	this->vertexSize = vertexSize;
+	this->maxVertexCount = maxVertexCount;
+	this->dynamic = dynamic;
+	vertices = new char[vertexSize*maxVertexCount];
+	if (!vertices)
+		return false;
 
 	D3D11_BUFFER_DESC bd;
 	ZeroMemory(&bd, sizeof(bd));
-	bd.ByteWidth = vertexSize*maxVertexCount;
-	if(dynamic)
+	bd.ByteWidth = vertexSize * maxVertexCount;
+	if (dynamic)
 	{
 		bd.Usage = D3D11_USAGE_DYNAMIC;
 		bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
@@ -34,30 +34,30 @@ bool DX11_VertexBuffer::Create(unsigned int vertexSize, unsigned int maxVertexCo
 		bd.CPUAccessFlags = 0;
 	}
 	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-	if(Demo::renderer->GetDevice()->CreateBuffer(&bd, NULL, &vertexBuffer) != S_OK)
+	if (Demo::renderer->GetDevice()->CreateBuffer(&bd, NULL, &vertexBuffer) != S_OK)
 		return false;
-	
+
 	return true;
 }
 
 unsigned int DX11_VertexBuffer::AddVertices(unsigned int numVertices, const float *newVertices)
 {
-  int firstIndex = currentVertexCount;
-  currentVertexCount += numVertices;
-  assert(currentVertexCount <= maxVertexCount);
-  memcpy(&vertices[vertexSize*firstIndex], newVertices, vertexSize*numVertices);
-  return firstIndex;
+	int firstIndex = currentVertexCount;
+	currentVertexCount += numVertices;
+	assert(currentVertexCount <= maxVertexCount);
+	memcpy(&vertices[vertexSize*firstIndex], newVertices, vertexSize*numVertices);
+	return firstIndex;
 }
 
 bool DX11_VertexBuffer::Update()
 {
-	if(currentVertexCount > 0)
+	if (currentVertexCount > 0)
 	{
-		if(dynamic)
+		if (dynamic)
 		{
 			D3D11_MAPPED_SUBRESOURCE mappedResource;
-			if(Demo::renderer->GetDeviceContext()->Map(vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource) != S_OK)
-			  return false;
+			if (Demo::renderer->GetDeviceContext()->Map(vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource) != S_OK)
+				return false;
 			memcpy(mappedResource.pData, vertices, vertexSize*currentVertexCount);
 			Demo::renderer->GetDeviceContext()->Unmap(vertexBuffer, 0);
 		}

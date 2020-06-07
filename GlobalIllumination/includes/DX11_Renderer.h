@@ -30,7 +30,7 @@
 // predefined IDs for frequently used samplers
 enum samplerID
 {
-	LINEAR_SAMPLER_ID=0,
+	LINEAR_SAMPLER_ID = 0,
 	TRILINEAR_SAMPLER_ID,
 	SHADOW_MAP_SAMPLER_ID
 };
@@ -38,7 +38,7 @@ enum samplerID
 // predefined IDs for frequently used render-targets
 enum renderTargetID
 {
-	BACK_BUFFER_RT_ID=0, // back buffer
+	BACK_BUFFER_RT_ID = 0, // back buffer
 	GBUFFERS_RT_ID, // geometry buffers
 	SHADOW_MAP_RT_ID // shadow map
 };
@@ -52,7 +52,7 @@ enum cameraID
 // predefined IDs for frequently used meshes 
 enum meshID
 {
-	UNIT_SPHERE_MESH_ID=0
+	UNIT_SPHERE_MESH_ID = 0
 };
 
 // DX11_Renderer
@@ -61,14 +61,14 @@ enum meshID
 class DX11_Renderer
 {
 public:
-	DX11_Renderer():
-    device(NULL),
-    deviceContext(NULL),
-    swapChain(NULL),
-    noneCullRS(NULL),
-    noDepthTestDSS(NULL),
-    defaultBS(NULL),
-    lastGpuCmd(DRAW_CM)
+	DX11_Renderer() :
+		device(NULL),
+		deviceContext(NULL),
+		swapChain(NULL),
+		noneCullRS(NULL),
+		noDepthTestDSS(NULL),
+		defaultBS(NULL),
+		lastGpuCmd(DRAW_CM)
 	{
 	}
 
@@ -77,17 +77,17 @@ public:
 		Destroy();
 	}
 
-	void Destroy();	
+	void Destroy();
 
 	bool Create();
 
 	DX11_Sampler* CreateSampler(const SamplerDesc &desc);
 
 	DX11_Sampler* GetSampler(unsigned int ID) const
-  {
-    assert(ID < samplers.GetSize());
-    return samplers[ID];
-  }
+	{
+		assert(ID < samplers.GetSize());
+		return samplers[ID];
+	}
 
 	DX11_RasterizerState* CreateRasterizerState(const RasterizerDesc &desc);
 
@@ -97,17 +97,17 @@ public:
 
 	DX11_RenderTargetConfig* CreateRenderTargetConfig(const RtConfigDesc &desc);
 
-  DX11_RenderTarget* CreateRenderTarget(const RenderTargetDesc &desc);
+	DX11_RenderTarget* CreateRenderTarget(const RenderTargetDesc &desc);
 
-  DX11_RenderTarget* CreateBackBufferRt();
+	DX11_RenderTarget* CreateBackBufferRt();
 
 	DX11_RenderTarget* GetRenderTarget(unsigned int ID) const
-  {
-    assert(ID < renderTargets.GetSize());
-    return renderTargets[ID];
-  }
+	{
+		assert(ID < renderTargets.GetSize());
+		return renderTargets[ID];
+	}
 
-  DX11_VertexLayout* CreateVertexLayout(const VertexElementDesc *vertexElementDescs, unsigned int numVertexElementDescs);
+	DX11_VertexLayout* CreateVertexLayout(const VertexElementDesc *vertexElementDescs, unsigned int numVertexElementDescs);
 
 	DX11_VertexBuffer* CreateVertexBuffer(unsigned int vertexSize, unsigned int maxVertexCount, bool dynamic);
 
@@ -120,35 +120,35 @@ public:
 	Camera* CreateCamera(float fovy, float aspectRatio, float nearClipDistance, float farClipDistance);
 
 	Camera* GetCamera(unsigned int ID) const
-  {
-    assert(ID < cameras.GetSize());
-    return cameras[ID];
-  }
+	{
+		assert(ID < cameras.GetSize());
+		return cameras[ID];
+	}
 
 	PointLight* CreatePointLight(const Vector3 &position, float radius, const Color &color, float multiplier);
 
 	DirectionalLight* CreateDirectionalLight(const Vector3 &direction, const Color &color, float multiplier);
 
 	ILight* GetLight(unsigned int index) const
-  {
-    assert(index < lights.GetSize());
-    return lights[index];
-  }
+	{
+		assert(index < lights.GetSize());
+		return lights[index];
+	}
 
 	Mesh* CreateMesh(const MeshDesc &desc);
 
 	Mesh* GetMesh(unsigned int ID) const
-  {
-    assert(ID < meshes.GetSize());
-    return meshes[ID];
-  }
+	{
+		assert(ID < meshes.GetSize());
+		return meshes[ID];
+	}
 
 	template<class T> T* CreatePostProcessor()
 	{
 		T *postProcessor = new T;
-		if(!postProcessor)
+		if (!postProcessor)
 			return NULL;
-		if(!postProcessor->Create())
+		if (!postProcessor->Create())
 		{
 			SAFE_DELETE(postProcessor);
 			return NULL;
@@ -173,8 +173,8 @@ public:
 
 	void ClearFrame();
 
-  // execute all GPU commands, which have been passed per frame to renderer
-  void ExecuteGpuCmds();
+	// execute all GPU commands, which have been passed per frame to renderer
+	void ExecuteGpuCmds();
 
 	// save a BMP screen-shot
 	void SaveScreenshot() const;
@@ -184,17 +184,17 @@ public:
 		return device;
 	}
 
-  ID3D11DeviceContext* GetDeviceContext() const
+	ID3D11DeviceContext* GetDeviceContext() const
 	{
 		return deviceContext;
 	}
 
-  IDXGISwapChain* GetSwapChain() const
+	IDXGISwapChain* GetSwapChain() const
 	{
 		return swapChain;
 	}
 
-private:  	
+private:
 	// create frequently used objects
 	bool CreateDefaultObjects();
 
@@ -203,19 +203,19 @@ private:
 
 	void ExecutePostProcessors();
 
-  // set draw states for passed draw command
-  void SetDrawStates(const DrawCmd &cmd);
+	// set draw states for passed draw command
+	void SetDrawStates(const DrawCmd &cmd);
 
-  // set shader states for passed shader command
-  void SetShaderStates(const ShaderCmd &cmd, gpuCmdOrders order);
+	// set shader states for passed shader command
+	void SetShaderStates(const ShaderCmd &cmd, gpuCmdOrders order);
 
-  // set shader params for passed shader command
-  void SetShaderParams(const ShaderCmd &cmd);
+	// set shader params for passed shader command
+	void SetShaderParams(const ShaderCmd &cmd);
 
 	void Draw(DrawCmd &cmd);
 
-	void Dispatch(ComputeCmd &cmd); 
-	
+	void Dispatch(ComputeCmd &cmd);
+
 	void UnbindShaderResources();
 
 	// list of all samplers
@@ -236,8 +236,8 @@ private:
 	// list of all render-targets
 	List<DX11_RenderTarget*> renderTargets;
 
-  // list of all vertex layouts
-  List<DX11_VertexLayout*> vertexLayouts;
+	// list of all vertex layouts
+	List<DX11_VertexLayout*> vertexLayouts;
 
 	// list of all vertex buffers
 	List<DX11_VertexBuffer*> vertexBuffers;
@@ -252,7 +252,7 @@ private:
 	List<DX11_StructuredBuffer*> structuredBuffers;
 
 	// list of all cameras
-	List<Camera*> cameras;	
+	List<Camera*> cameras;
 
 	// list of all dynamic lights
 	List<ILight*> lights;
@@ -266,10 +266,10 @@ private:
 	// list of all per frame passed GPU commands 
 	List<GpuCmd> gpuCmds;
 
-  // DirectX 11 objects
-  ID3D11Device *device;
-  ID3D11DeviceContext *deviceContext;
-  IDXGISwapChain *swapChain;
+	// DirectX 11 objects
+	ID3D11Device *device;
+	ID3D11DeviceContext *deviceContext;
+	IDXGISwapChain *swapChain;
 
 	// render-states, frequently used by post-processors
 	DX11_RasterizerState *noneCullRS;

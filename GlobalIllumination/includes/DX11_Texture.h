@@ -10,16 +10,16 @@
 class DX11_Texture
 {
 public:
-  friend class DX11_Renderer;
-	friend class DX11_RenderTarget; 
+	friend class DX11_Renderer;
+	friend class DX11_RenderTarget;
 
-	DX11_Texture():
-    numLevels(1),
-    texture(NULL),     
-    shaderResourceView(NULL),
-    unorderedAccessView(NULL)
+	DX11_Texture() :
+		numLevels(1),
+		texture(NULL),
+		shaderResourceView(NULL),
+		unorderedAccessView(NULL)
 	{
-	  name[0] = 0;
+		name[0] = 0;
 	}
 
 	~DX11_Texture()
@@ -27,42 +27,42 @@ public:
 		Release();
 	}
 
-	void Release();	
+	void Release();
 
-	bool LoadFromFile(const char *fileName); 
+	bool LoadFromFile(const char *fileName);
 
 	// creates render-target texture
-	bool CreateRenderable(unsigned int width, unsigned int height, unsigned int depth, texFormats format, 
-                        unsigned int numLevels=1, unsigned int rtFlags=0);	
+	bool CreateRenderable(unsigned int width, unsigned int height, unsigned int depth, texFormats format,
+		unsigned int numLevels = 1, unsigned int rtFlags = 0);
 
-	void Bind(textureBP bindingPoint, shaderTypes shaderType=VERTEX_SHADER) const;
+	void Bind(textureBP bindingPoint, shaderTypes shaderType = VERTEX_SHADER) const;
 
 	const char* GetName() const
 	{
 		return name;
 	}
 
-  unsigned int GetNumLevels() const
-  {
-    return numLevels;
-  }
+	unsigned int GetNumLevels() const
+	{
+		return numLevels;
+	}
 
-  ID3D11UnorderedAccessView* GetUnorderdAccessView() const
-  {
-    return unorderedAccessView;
-  }
+	ID3D11UnorderedAccessView* GetUnorderdAccessView() const
+	{
+		return unorderedAccessView;
+	}
 
-  static bool IsSrgbFormat(texFormats texFormat);
+	static bool IsSrgbFormat(texFormats texFormat);
 
-  static texFormats ConvertToSrgbFormat(texFormats texFormat);
+	static texFormats ConvertToSrgbFormat(texFormats texFormat);
 
-  static texFormats ConvertFromSrgbFormat(texFormats texFormat);
+	static texFormats ConvertFromSrgbFormat(texFormats texFormat);
 
-  static DXGI_FORMAT GetDX11TexFormat(texFormats texFormat, bool typeless=false);
+	static DXGI_FORMAT GetDX11TexFormat(texFormats texFormat, bool typeless = false);
 
-private:	  
+private:
 	char name[DEMO_MAX_FILENAME];
-  unsigned int numLevels;
+	unsigned int numLevels;
 
 	ID3D11Resource *texture;
 	ID3D11ShaderResourceView *shaderResourceView;

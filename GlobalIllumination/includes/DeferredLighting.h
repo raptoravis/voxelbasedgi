@@ -6,18 +6,18 @@
 // DeferredLighting
 //
 // Performs deferred lighting.
-class DeferredLighting: public IPostProcessor
+class DeferredLighting : public IPostProcessor
 {
-public: 
+public:
 	DeferredLighting()
 	{
 		strcpy(name, "DeferredLighting");
 	}
 
 	virtual bool Create() override
-  {
-    return true;
-  }
+	{
+		return true;
+	}
 
 	virtual DX11_RenderTarget* GetOutputRT() const override
 	{

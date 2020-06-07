@@ -6,40 +6,40 @@
 // descriptor for setting up DX11_Sampler
 struct SamplerDesc
 {
-	SamplerDesc():
-    filter(MIN_MAG_LINEAR_FILTER),
-    maxAnisotropy(2),
-    adressU(CLAMP_TEX_ADRESS),
-    adressV(CLAMP_TEX_ADRESS),
-    adressW(CLAMP_TEX_ADRESS),
-    minLOD(0.0f),
-    maxLOD(FLT_MAX),
-    lodBias(0.0f),
-    compareFunc(LEQUAL_COMP_FUNC)
+	SamplerDesc() :
+		filter(MIN_MAG_LINEAR_FILTER),
+		maxAnisotropy(2),
+		adressU(CLAMP_TEX_ADRESS),
+		adressV(CLAMP_TEX_ADRESS),
+		adressW(CLAMP_TEX_ADRESS),
+		minLOD(0.0f),
+		maxLOD(FLT_MAX),
+		lodBias(0.0f),
+		compareFunc(LEQUAL_COMP_FUNC)
 	{
 	}
 
 	bool operator== (const SamplerDesc &desc) const
 	{
-		if(filter != desc.filter)
+		if (filter != desc.filter)
 			return false;
-		if(maxAnisotropy != desc.maxAnisotropy)
+		if (maxAnisotropy != desc.maxAnisotropy)
 			return false;
-		if(adressU != desc.adressU)
+		if (adressU != desc.adressU)
 			return false;
-		if(adressV != desc.adressV)
+		if (adressV != desc.adressV)
 			return false;
-		if(adressW != desc.adressW)
+		if (adressW != desc.adressW)
 			return false;
-		if(borderColor != desc.borderColor)
+		if (borderColor != desc.borderColor)
 			return false;
-		if(!IS_EQUAL(minLOD, desc.minLOD))
+		if (!IS_EQUAL(minLOD, desc.minLOD))
 			return false;
-		if(!IS_EQUAL(maxLOD, desc.maxLOD))
+		if (!IS_EQUAL(maxLOD, desc.maxLOD))
 			return false;
-		if(!IS_EQUAL(lodBias, desc.lodBias))
+		if (!IS_EQUAL(lodBias, desc.lodBias))
 			return false;
-		if(compareFunc != desc.compareFunc)
+		if (compareFunc != desc.compareFunc)
 			return false;
 		return true;
 	}
@@ -62,8 +62,8 @@ struct SamplerDesc
 class DX11_Sampler
 {
 public:
-	DX11_Sampler():
-    sampler(NULL)
+	DX11_Sampler() :
+		sampler(NULL)
 	{
 	}
 
@@ -76,7 +76,7 @@ public:
 
 	bool Create(const SamplerDesc &desc);
 
-	void Bind(textureBP bindingPoint, shaderTypes shaderType=VERTEX_SHADER) const;
+	void Bind(textureBP bindingPoint, shaderTypes shaderType = VERTEX_SHADER) const;
 
 	const SamplerDesc& GetDesc() const
 	{

@@ -7,11 +7,11 @@
 class TimeManager
 {
 public:
-  TimeManager():
-    timeScale(0.0),
-    frameInterval(0.0),
-    fps(0.0f),
-    performanceCounterAvailable(false)
+	TimeManager() :
+		timeScale(0.0),
+		frameInterval(0.0),
+		fps(0.0f),
+		performanceCounterAvailable(false)
 	{
 	}
 
@@ -19,7 +19,7 @@ public:
 	void Init();
 
 	// updates frame-interval/ fps per frame
-	void Update(); 
+	void Update();
 
 	// gets interval of one frame in ms
 	double GetFrameInterval() const
@@ -36,7 +36,7 @@ public:
 private:
 	double timeScale, frameInterval;
 	float fps;
-  bool performanceCounterAvailable;
+	bool performanceCounterAvailable;
 
 };
 

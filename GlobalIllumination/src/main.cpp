@@ -26,7 +26,7 @@
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	Application *app = new Application;
-	if((!app) || (!app->Init()))
+	if ((!app) || (!app->Init()))
 	{
 		SAFE_DELETE(app);
 		return E_FAIL;

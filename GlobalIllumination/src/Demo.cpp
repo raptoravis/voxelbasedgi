@@ -11,30 +11,30 @@ ResourceManager* Demo::resourceManager = NULL;
 bool Demo::Create()
 {
 	fileManager = new FileManager;
-	if(!fileManager)
+	if (!fileManager)
 		return false;
 
 	window = new Window;
-	if(!window)
-    return false;
+	if (!window)
+		return false;
 
 	timeManager = new TimeManager;
-	if(!timeManager)
+	if (!timeManager)
 		return false;
 
 	inputManager = new InputManager;
-	if(!inputManager)
+	if (!inputManager)
 		return false;
 
-  renderer = new DX11_Renderer;
-	if(!renderer)
+	renderer = new DX11_Renderer;
+	if (!renderer)
 		return false;
 
-  resourceManager = new ResourceManager;
-	if(!resourceManager)
+	resourceManager = new ResourceManager;
+	if (!resourceManager)
 		return false;
 
-  return true;
+	return true;
 }
 
 void Demo::Release()
@@ -42,7 +42,7 @@ void Demo::Release()
 	SAFE_DELETE(resourceManager);
 	SAFE_DELETE(renderer);
 	SAFE_DELETE(inputManager);
-  SAFE_DELETE(timeManager);
+	SAFE_DELETE(timeManager);
 	SAFE_DELETE(window);
 	SAFE_DELETE(fileManager);
 }

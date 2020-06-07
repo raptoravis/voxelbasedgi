@@ -9,21 +9,21 @@ class DX11_RenderTarget;
 class IPostProcessor
 {
 public:
-  IPostProcessor():
-    active(true)
+	IPostProcessor() :
+		active(true)
 	{
-    name[0] = 0;
+		name[0] = 0;
 	}
 
-  virtual ~IPostProcessor()
+	virtual ~IPostProcessor()
 	{
 	}
 
-	virtual bool Create()=0;
+	virtual bool Create() = 0;
 
-	virtual DX11_RenderTarget* GetOutputRT() const=0;
+	virtual DX11_RenderTarget* GetOutputRT() const = 0;
 
-	virtual void Execute()=0;
+	virtual void Execute() = 0;
 
 	const char* GetName() const
 	{
@@ -42,7 +42,7 @@ public:
 
 protected:
 	char name[DEMO_MAX_STRING];
-	bool active; 
+	bool active;
 
 };
 

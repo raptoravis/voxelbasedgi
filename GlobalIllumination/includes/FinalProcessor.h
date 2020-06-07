@@ -10,13 +10,13 @@ class DX11_Shader;
 //
 // Copies content of the accumulation buffer (of the GBuffers) into the back buffer
 // while performing tone-mapping.
-class FinalProcessor: public IPostProcessor
+class FinalProcessor : public IPostProcessor
 {
-public: 
-	FinalProcessor():
-    sceneRT(NULL),
-    backBufferRT(NULL),
-    finalPassShader(NULL)
+public:
+	FinalProcessor() :
+		sceneRT(NULL),
+		backBufferRT(NULL),
+		finalPassShader(NULL)
 	{
 		strcpy(name, "FinalProcessor");
 	}

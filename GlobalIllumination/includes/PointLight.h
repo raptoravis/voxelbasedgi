@@ -18,34 +18,34 @@ class DX11_RenderTargetConfig;
 // effects, in this demo point lights do not cast shadows. However especially for large point lights 
 // shadow maps have to be used same as for directional lights. According to directional lights the 
 // shadow maps, that have been generated for direct illumination, are reused for indirect illumination.
-class PointLight: public ILight
+class PointLight : public ILight
 {
 public:
-  struct BufferData
-  {
-    BufferData():
-      radius(0.0f),
-      multiplier(0.0f)
-    {
-    }
+	struct BufferData
+	{
+		BufferData() :
+			radius(0.0f),
+			multiplier(0.0f)
+		{
+		}
 
-    Vector3 position;
-    float radius;
-    Color color;
-    Matrix4 worldMatrix;
-    float multiplier;
-  };
+		Vector3 position;
+		float radius;
+		Color color;
+		Matrix4 worldMatrix;
+		float multiplier;
+	};
 
-	PointLight():
-    lightShader(NULL),
-    uniformBuffer(NULL),
-    backCullRS(NULL),
-    frontCullRS(NULL),
-    noDepthWriteDSS(NULL),
-    noDepthTestDSS(NULL),
-    blendBS(NULL),
-    rtConfig(NULL),
-    cameraInVolume(false)
+	PointLight() :
+		lightShader(NULL),
+		uniformBuffer(NULL),
+		backCullRS(NULL),
+		frontCullRS(NULL),
+		noDepthWriteDSS(NULL),
+		noDepthTestDSS(NULL),
+		blendBS(NULL),
+		rtConfig(NULL),
+		cameraInVolume(false)
 	{
 		lightGridShaders[FINE_GRID] = NULL;
 		lightGridShaders[COARSE_GRID] = NULL;
@@ -100,7 +100,7 @@ public:
 	{
 		return bufferData.multiplier;
 	}
-	
+
 private:
 	bool IsSphereInVolume(const Vector3 &position, float radius) const;
 
@@ -109,18 +109,18 @@ private:
 	void UpdateUniformBuffer();
 
 	// data for point light uniform-buffer
-  BufferData bufferData;
+	BufferData bufferData;
 
 	DX11_Shader *lightShader;
 	DX11_Shader *lightGridShaders[2];
 	DX11_UniformBuffer *uniformBuffer;
 	DX11_RasterizerState *backCullRS;
-	DX11_RasterizerState *frontCullRS;	
+	DX11_RasterizerState *frontCullRS;
 	DX11_DepthStencilState *noDepthWriteDSS;
 	DX11_DepthStencilState *noDepthTestDSS;
 	DX11_BlendState *blendBS;
 	DX11_RenderTargetConfig *rtConfig;
-	bool cameraInVolume; 
+	bool cameraInVolume;
 
 };
 

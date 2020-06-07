@@ -9,29 +9,29 @@ class DX11_UniformBuffer;
 class Camera
 {
 public:
-  struct BufferData
-  {
-    BufferData():
-      nearClipDistance(0.0f),
-      farClipDistance(0.0f),
-      nearFarClipDistance(0.0f)
-    {
-    }
+	struct BufferData
+	{
+		BufferData() :
+			nearClipDistance(0.0f),
+			farClipDistance(0.0f),
+			nearFarClipDistance(0.0f)
+		{
+		}
 
-    Matrix4 viewMatrix;
-    Matrix4 projMatrix;
-    Matrix4 viewProjMatrix;
-    Matrix4 invViewProjMatrix;
-    Vector3 position;
-    float nearClipDistance;
-    float farClipDistance;
-    float nearFarClipDistance;
-  };
+		Matrix4 viewMatrix;
+		Matrix4 projMatrix;
+		Matrix4 viewProjMatrix;
+		Matrix4 invViewProjMatrix;
+		Vector3 position;
+		float nearClipDistance;
+		float farClipDistance;
+		float nearFarClipDistance;
+	};
 
-  Camera():
-    fovy(0.0f),
-    aspectRatio(0.0f),
-    uniformBuffer(NULL)
+	Camera() :
+		fovy(0.0f),
+		aspectRatio(0.0f),
+		uniformBuffer(NULL)
 	{
 	}
 
@@ -49,7 +49,7 @@ public:
 		return bufferData.viewMatrix;
 	}
 
- 	Matrix4 GetProjMatrix() const
+	Matrix4 GetProjMatrix() const
 	{
 		return bufferData.projMatrix;
 	}
@@ -63,23 +63,23 @@ public:
 	{
 		return bufferData.viewProjMatrix;
 	}
- 
-  Matrix4 GetInvViewProjMatrix() const
-  {
-    return bufferData.invViewProjMatrix;
-  }
+
+	Matrix4 GetInvViewProjMatrix() const
+	{
+		return bufferData.invViewProjMatrix;
+	}
 
 	Vector3 GetPosition() const
 	{
 		return bufferData.position;
 	}
-	
+
 	Vector3 GetRotation() const
 	{
 		return rotation;
 	}
 
-  Vector3 GetDirection() const
+	Vector3 GetDirection() const
 	{
 		return direction;
 	}
@@ -99,7 +99,7 @@ public:
 		return bufferData.nearClipDistance;
 	}
 
-  float GetFarClipDistance() const
+	float GetFarClipDistance() const
 	{
 		return bufferData.farClipDistance;
 	}
@@ -110,11 +110,11 @@ public:
 	}
 
 private:
-  void UpdateUniformBuffer();
+	void UpdateUniformBuffer();
 
 	// data for camera uniform-buffer
-  BufferData bufferData;
-	
+	BufferData bufferData;
+
 	Vector3 rotation;
 	Vector3 direction;
 	float fovy;

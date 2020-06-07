@@ -6,23 +6,23 @@
 // descriptor for setting up DX11_RasterizerState
 struct RasterizerDesc
 {
-	RasterizerDesc():
-    fillMode(SOLID_FILL),
-    cullMode(NONE_CULL),
-    scissorTest(false),
-    multisampleEnable(false)
+	RasterizerDesc() :
+		fillMode(SOLID_FILL),
+		cullMode(NONE_CULL),
+		scissorTest(false),
+		multisampleEnable(false)
 	{
 	}
 
 	bool operator== (const RasterizerDesc &desc) const
 	{
-		if(fillMode != desc.fillMode)
+		if (fillMode != desc.fillMode)
 			return false;
-		if(cullMode != desc.cullMode)
+		if (cullMode != desc.cullMode)
 			return false;
-		if(scissorTest != desc.scissorTest)
+		if (scissorTest != desc.scissorTest)
 			return false;
-		if(multisampleEnable != desc.multisampleEnable)
+		if (multisampleEnable != desc.multisampleEnable)
 			return false;
 		return true;
 	}
@@ -39,12 +39,12 @@ struct RasterizerDesc
 class DX11_RasterizerState
 {
 public:
-  DX11_RasterizerState():
-    rasterizerState(NULL)
+	DX11_RasterizerState() :
+		rasterizerState(NULL)
 	{
 	}
 
-  ~DX11_RasterizerState()
+	~DX11_RasterizerState()
 	{
 		Release();
 	}
@@ -62,7 +62,7 @@ public:
 
 private:
 	RasterizerDesc desc;
-  ID3D11RasterizerState *rasterizerState;
+	ID3D11RasterizerState *rasterizerState;
 
 };
 

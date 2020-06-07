@@ -12,19 +12,19 @@ struct MaterialInfo
 
 // render-states
 static const MaterialInfo renderStateList[NUM_RENDER_STATES] =
-{ 
-  "NONE_CULL",NONE_CULL, "FRONT_CULL",FRONT_CULL, "BACK_CULL",BACK_CULL, 
+{
+  "NONE_CULL",NONE_CULL, "FRONT_CULL",FRONT_CULL, "BACK_CULL",BACK_CULL,
 	"ZERO_BLEND",ZERO_BLEND, "ONE_BLEND",ONE_BLEND, "SRC_COLOR_BLEND",SRC_COLOR_BLEND,
   "INV_SRC_COLOR_BLEND",INV_SRC_COLOR_BLEND, "DST_COLOR_BLEND",DST_COLOR_BLEND,
 	"INV_DST_COLOR_BLEND",INV_DST_COLOR_BLEND, "SRC_ALPHA_BLEND",SRC_ALPHA_BLEND,
-  "INV_SRC_ALPHA_BLEND",INV_SRC_ALPHA_BLEND, "DST_ALPHA_BLEND",DST_ALPHA_BLEND, 
+  "INV_SRC_ALPHA_BLEND",INV_SRC_ALPHA_BLEND, "DST_ALPHA_BLEND",DST_ALPHA_BLEND,
   "INV_DST_ALPHA_BLEND",INV_DST_ALPHA_BLEND, "CONST_COLOR_BLEND",CONST_COLOR_BLEND,
   "INV_CONST_COLOR_BLEND",INV_CONST_COLOR_BLEND, "CONST_ALPHA_BLEND",CONST_ALPHA_BLEND,
-	"INV_CONST_ALPHA_BLEND",INV_CONST_ALPHA_BLEND, "SRC_ALPHA_SAT_BLEND",SRC_ALPHA_SAT_BLEND, 
+	"INV_CONST_ALPHA_BLEND",INV_CONST_ALPHA_BLEND, "SRC_ALPHA_SAT_BLEND",SRC_ALPHA_SAT_BLEND,
 	"SRC1_COLOR_BLEND",SRC1_COLOR_BLEND, "INV_SRC1_COLOR_BLEND",INV_SRC1_COLOR_BLEND,
 	"SRC1_ALPHA_BLEND",SRC1_ALPHA_BLEND, "INV_SRC1_ALPHA_BLEND",INV_SRC1_ALPHA_BLEND,
 	"ADD_BLEND_OP",ADD_BLEND_OP, "SUBTRACT_BLEND_OP",SUBTRACT_BLEND_OP,
-	"REV_SUBTRACT_BLEND_OP",REV_SUBTRACT_BLEND_OP, "MIN_BLEND_OP",MIN_BLEND_OP,    
+	"REV_SUBTRACT_BLEND_OP",REV_SUBTRACT_BLEND_OP, "MIN_BLEND_OP",MIN_BLEND_OP,
 	"MAX_BLEND_OP",MAX_BLEND_OP
 };
 
@@ -35,33 +35,33 @@ static const MaterialInfo renderStateList[NUM_RENDER_STATES] =
  	    state = (stateType)renderStateList[i].mode;
 
 bool Material::LoadTextures(std::ifstream &file)
-{ 
+{
 	std::string str, token;
 	file >> token;
-	while(true)
+	while (true)
 	{
 		file >> str;
-		if((str == "}") || (file.eof()))
+		if ((str == "}") || (file.eof()))
 			break;
-		else if(str == "ColorTexture")
+		else if (str == "ColorTexture")
 		{
 			file >> str;
 			colorTexture = Demo::resourceManager->LoadTexture(str.c_str());
-			if(!colorTexture)
+			if (!colorTexture)
 				return false;
 		}
-		else if(str == "NormalTexture")
+		else if (str == "NormalTexture")
 		{
 			file >> str;
 			normalTexture = Demo::resourceManager->LoadTexture(str.c_str());
-			if(!normalTexture)
+			if (!normalTexture)
 				return false;
 		}
-		else if(str == "SpecularTexture")
-		{ 
+		else if (str == "SpecularTexture")
+		{
 			file >> str;
 			specularTexture = Demo::resourceManager->LoadTexture(str.c_str());
-			if(!specularTexture)
+			if (!specularTexture)
 				return false;
 		}
 	}
@@ -72,21 +72,21 @@ void Material::LoadRenderStates(std::ifstream &file)
 {
 	std::string str, token;
 	file >> token;
-	while(true)
+	while (true)
 	{
 		file >> str;
-		if((str == "}") || (file.eof()))
+		if ((str == "}") || (file.eof()))
 			break;
-		else if(str == "cull")
+		else if (str == "cull")
 		{
 			file >> str;
 			STR_TO_STATE(str, cullModes, rasterDesc.cullMode);
 		}
-		else if(str == "noDepthTest")
+		else if (str == "noDepthTest")
 			depthStencilDesc.depthTest = false;
-		else if(str == "noDepthMask")
+		else if (str == "noDepthMask")
 			depthStencilDesc.depthMask = false;
-		else if(str == "colorBlend")
+		else if (str == "colorBlend")
 		{
 			blendDesc.blend = true;
 			file >> str;
@@ -96,7 +96,7 @@ void Material::LoadRenderStates(std::ifstream &file)
 			file >> str;
 			STR_TO_STATE(str, blendOps, blendDesc.blendColorOp);
 		}
-		else if(str == "alphaBlend")
+		else if (str == "alphaBlend")
 		{
 			blendDesc.blend = true;
 			file >> str;
@@ -106,7 +106,7 @@ void Material::LoadRenderStates(std::ifstream &file)
 			file >> str;
 			STR_TO_STATE(str, blendOps, blendDesc.blendAlphaOp);
 		}
-	}	
+	}
 }
 
 bool Material::LoadShader(std::ifstream &file)
@@ -114,22 +114,22 @@ bool Material::LoadShader(std::ifstream &file)
 	std::string str, token;
 	unsigned int permutationMask = 0;
 	file >> token;
-	while(true)
+	while (true)
 	{
 		file >> str;
-		if((str == "}") || (file.eof()))
+		if ((str == "}") || (file.eof()))
 			break;
-		else if(str == "permutation")
+		else if (str == "permutation")
 		{
 			file >> permutationMask;
 		}
-		else if(str == "file")
+		else if (str == "file")
 		{
 			file >> str;
 			shader = Demo::resourceManager->LoadShader(str.c_str(), permutationMask);
-			if(!shader)
+			if (!shader)
 				return false;
-		} 
+		}
 	}
 	return true;
 }
@@ -138,56 +138,56 @@ bool Material::Load(const char *fileName)
 {
 	strcpy(name, fileName);
 	char filePath[DEMO_MAX_FILEPATH];
-	if(!Demo::fileManager->GetFilePath(fileName, filePath))
+	if (!Demo::fileManager->GetFilePath(fileName, filePath))
 		return false;
 	std::ifstream file(filePath, std::ios::in);
-	if(!file.is_open())
+	if (!file.is_open())
 		return false;
 
 	std::string str, token;
 	file >> str;
-	while(!file.eof())
+	while (!file.eof())
 	{
-		if(str == "Textures")
+		if (str == "Textures")
 		{
-			if(!LoadTextures(file))
+			if (!LoadTextures(file))
 			{
 				file.close();
 				return false;
 			}
 		}
-		else if(str == "RenderStates")
+		else if (str == "RenderStates")
 		{
 			LoadRenderStates(file);
 		}
-		else if(str == "Shader")
+		else if (str == "Shader")
 		{
-			if(!LoadShader(file))
+			if (!LoadShader(file))
 			{
 				file.close();
 				return false;
 			}
 		}
 		file >> str;
-	} 
+	}
 	file.close();
 
 	rasterizerState = Demo::renderer->CreateRasterizerState(rasterDesc);
-	if(!rasterizerState)
+	if (!rasterizerState)
 		return false;
 
 	// Increment for all opaque geometry the stencil buffer. In this way direct as well
 	// as indirect illumination can be restricted to the area, where actually the scene 
   // geometry is located. On the other hand the sky can be easily rendered to the area,
 	// where the stencil buffer is still left to 0.
-	if(!blendDesc.blend)
+	if (!blendDesc.blend)
 		depthStencilDesc.stencilTest = true;
 	depthStencilState = Demo::renderer->CreateDepthStencilState(depthStencilDesc);
-	if(!depthStencilState)
+	if (!depthStencilState)
 		return false;
 
 	blendState = Demo::renderer->CreateBlendState(blendDesc);
-	if(!blendState)
+	if (!blendState)
 		return false;
 
 	return true;

@@ -17,63 +17,63 @@ class DemoMesh;
 class Application
 {
 public:
-  Application():
-    mainCamera(NULL),
-    defaultFont(NULL),
-    globalIllum(NULL),
-    dirLight(NULL),
-    dynamicMesh(NULL),
-    quit(false),
-    pathLigthsEnabled(true),
-    pathLightsAnimated(true),
-    showHelp(false),
-    showSettings(false)
-  {
-  }
+	Application() :
+		mainCamera(NULL),
+		defaultFont(NULL),
+		globalIllum(NULL),
+		dirLight(NULL),
+		dynamicMesh(NULL),
+		quit(false),
+		pathLigthsEnabled(true),
+		pathLightsAnimated(true),
+		showHelp(false),
+		showSettings(false)
+	{
+	}
 
-  bool Init();
+	bool Init();
 
-  void Run();
+	void Run();
 
-  void Shutdown();
+	void Shutdown();
 
-  void Quit();
+	void Quit();
 
-  void EnablePathLights(bool enable);
+	void EnablePathLights(bool enable);
 
-  bool ArePathLightsEnabled() const
-  {
-    return pathLigthsEnabled; 
-  }
+	bool ArePathLightsEnabled() const
+	{
+		return pathLigthsEnabled;
+	}
 
-  void AnimatePathLights(bool animate);
+	void AnimatePathLights(bool animate);
 
-  bool ArePathLightsAnimated() const
-  {
-    return pathLightsAnimated;
-  }
+	bool ArePathLightsAnimated() const
+	{
+		return pathLightsAnimated;
+	}
 
 private:
-  bool OnInit();
+	bool OnInit();
 
-  void OnRun();
+	void OnRun();
 
-  void HandleInput();
+	void HandleInput();
 
-  void DisplayInfo();
+	void DisplayInfo();
 
-  Camera *mainCamera;
-  POINT prevMousePos;
-  Font *defaultFont;
-  GlobalIllum *globalIllum;
-  DirectionalLight *dirLight;
-  PathPointLight pathPointLights[NUM_PATH_POINT_LIGHTS];
-  DemoMesh *dynamicMesh;
-  bool quit;
-  bool pathLigthsEnabled;
-  bool pathLightsAnimated;
-  bool showHelp;
-  bool showSettings;
+	Camera *mainCamera;
+	POINT prevMousePos;
+	Font *defaultFont;
+	GlobalIllum *globalIllum;
+	DirectionalLight *dirLight;
+	PathPointLight pathPointLights[NUM_PATH_POINT_LIGHTS];
+	DemoMesh *dynamicMesh;
+	bool quit;
+	bool pathLigthsEnabled;
+	bool pathLightsAnimated;
+	bool showHelp;
+	bool showSettings;
 
 };
 

@@ -3,45 +3,45 @@
 #include <ResourceManager.h>
 
 void ResourceManager::Release()
-{ 
+{
 	SAFE_DELETE_PLIST(shaders);
 	SAFE_DELETE_PLIST(textures);
 	SAFE_DELETE_PLIST(materials);
-	SAFE_DELETE_PLIST(fonts); 
+	SAFE_DELETE_PLIST(fonts);
 	SAFE_DELETE_PLIST(demoMeshes);
 }
 
 DX11_Shader* ResourceManager::LoadShader(const char *fileName, unsigned int permutationMask)
 {
-	for(unsigned int i=0; i<shaders.GetSize(); i++)
+	for (unsigned int i = 0; i < shaders.GetSize(); i++)
 	{
-		if((strcmp(shaders[i]->GetName(), fileName) == 0) &&
-			 (shaders[i]->GetPermutationMask() == permutationMask))
+		if ((strcmp(shaders[i]->GetName(), fileName) == 0) &&
+			(shaders[i]->GetPermutationMask() == permutationMask))
 			return shaders[i];
 	}
 	DX11_Shader *shader = new DX11_Shader;
-	if(!shader)
+	if (!shader)
 		return NULL;
-	if(!shader->Load(fileName, permutationMask))
+	if (!shader->Load(fileName, permutationMask))
 	{
 		SAFE_DELETE(shader);
 		return NULL;
 	}
-  shaders.AddElement(&shader);
+	shaders.AddElement(&shader);
 	return shader;
 }
 
 DX11_Texture* ResourceManager::LoadTexture(const char *fileName)
 {
-	for(unsigned int i=0; i<textures.GetSize(); i++)
+	for (unsigned int i = 0; i < textures.GetSize(); i++)
 	{
-		if(strcmp(textures[i]->GetName(), fileName) == 0) 
+		if (strcmp(textures[i]->GetName(), fileName) == 0)
 			return textures[i];
 	}
 	DX11_Texture *texture = new DX11_Texture;
-	if(!texture)
+	if (!texture)
 		return NULL;
-	if(!texture->LoadFromFile(fileName))
+	if (!texture->LoadFromFile(fileName))
 	{
 		SAFE_DELETE(texture);
 		return NULL;
@@ -52,15 +52,15 @@ DX11_Texture* ResourceManager::LoadTexture(const char *fileName)
 
 Material* ResourceManager::LoadMaterial(const char *fileName)
 {
-	for(unsigned int i=0; i<materials.GetSize(); i++)
+	for (unsigned int i = 0; i < materials.GetSize(); i++)
 	{
-		if(strcmp(materials[i]->GetName(), fileName) == 0)
+		if (strcmp(materials[i]->GetName(), fileName) == 0)
 			return materials[i];
 	}
 	Material *material = new Material;
-	if(!material)
+	if (!material)
 		return NULL;
-	if(!material->Load(fileName))
+	if (!material->Load(fileName))
 	{
 		SAFE_DELETE(material);
 		return NULL;
@@ -71,29 +71,29 @@ Material* ResourceManager::LoadMaterial(const char *fileName)
 
 Font* ResourceManager::LoadFont(const char *fileName)
 {
-	for(unsigned int i=0; i<fonts.GetSize(); i++)
+	for (unsigned int i = 0; i < fonts.GetSize(); i++)
 	{
-    if(strcmp(fonts[i]->GetName(), fileName) == 0)
+		if (strcmp(fonts[i]->GetName(), fileName) == 0)
 			return fonts[i];
 	}
 	Font *font = new Font;
-	if(!font)
+	if (!font)
 		return NULL;
-	if(!font->Load(fileName))
+	if (!font->Load(fileName))
 	{
 		SAFE_DELETE(font);
 		return NULL;
 	}
-	fonts.AddElement(&font); 
+	fonts.AddElement(&font);
 	return font;
 }
 
 DemoMesh* ResourceManager::LoadDemoMesh(const char *fileName)
 {
 	DemoMesh *demoMesh = new DemoMesh;
-	if(!demoMesh)
+	if (!demoMesh)
 		return NULL;
-	if(!demoMesh->Load(fileName))
+	if (!demoMesh->Load(fileName))
 	{
 		SAFE_DELETE(demoMesh);
 		return NULL;
